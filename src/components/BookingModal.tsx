@@ -199,14 +199,14 @@ export default function BookingModal({
 
   return (
     <div 
-      className="fixed inset-0 z-50 overflow-y-auto bg-sage-950/75 backdrop-blur-xs p-3 sm:p-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-sage-950/75 backdrop-blur-xs p-2.5 sm:p-6"
       onClick={(e) => {
         if (e.target === e.currentTarget) resetAndClose();
       }}
     >
       <div className="min-h-full flex items-start sm:items-center justify-center">
         <div 
-          className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl border border-sage-200 my-4 sm:my-8 text-left"
+          className="bg-white rounded-3xl max-w-2xl w-full p-4 sm:p-8 relative shadow-2xl border border-sage-200 my-2 sm:my-8 text-left"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Prominent Cross (Close) Button */}
@@ -214,18 +214,18 @@ export default function BookingModal({
             type="button"
             onClick={resetAndClose}
             aria-label="Close modal"
-            className="absolute top-4 right-4 sm:top-5 sm:right-5 z-30 w-10 h-10 rounded-full bg-linen-100 hover:bg-terracotta-100 text-sage-700 hover:text-terracotta-700 border border-sage-200 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-xs cursor-pointer group"
+            className="absolute top-3 right-3 sm:top-5 sm:right-5 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-linen-100 hover:bg-terracotta-100 text-sage-700 hover:text-terracotta-700 border border-sage-200 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-xs cursor-pointer group"
           >
             <X className="w-5 h-5 stroke-[2.5] group-hover:rotate-90 transition-transform duration-200" />
           </button>
 
         {/* Modal Progress Indicator */}
         {step < 4 && (
-          <div className="mb-6">
-            <div className="flex items-center justify-between text-xs font-semibold text-sage-600 mb-2">
-              <span className={step >= 1 ? "text-terracotta-600 font-bold" : ""}>1. Slot &amp; Format</span>
-              <span className={step >= 2 ? "text-terracotta-600 font-bold" : ""}>2. Client Intake</span>
-              <span className={step >= 3 ? "text-terracotta-600 font-bold" : ""}>3. Payment Options</span>
+          <div className="mb-6 pr-10 sm:pr-12">
+            <div className="flex items-center justify-between text-[11px] sm:text-xs font-semibold text-sage-600 mb-2">
+              <span className={step >= 1 ? "text-terracotta-600 font-bold" : ""}>1. Slot</span>
+              <span className={step >= 2 ? "text-terracotta-600 font-bold" : ""}>2. Intake</span>
+              <span className={step >= 3 ? "text-terracotta-600 font-bold" : ""}>3. Payment</span>
             </div>
             <div className="w-full bg-sage-100 h-1.5 rounded-full overflow-hidden">
               <div 
@@ -392,7 +392,7 @@ export default function BookingModal({
             </div>
 
             {/* Step 1 Actions */}
-            <div className="pt-4 border-t border-sage-100 flex items-center justify-between">
+            <div className="pt-4 border-t border-sage-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div className="text-xs text-sage-600">
                 Session Fee:{" "}
                 <strong className="text-sm text-sage-900">
@@ -408,11 +408,11 @@ export default function BookingModal({
                   </span>
                 )}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-end gap-2 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={resetAndClose}
-                  className="px-4 py-2.5 rounded-full text-xs font-semibold text-sage-600 hover:text-sage-900 hover:bg-sage-100 transition"
+                  className="px-3.5 py-2 rounded-full text-xs font-semibold text-sage-600 hover:text-sage-900 hover:bg-sage-100 transition"
                 >
                   Cancel
                 </button>
@@ -420,7 +420,7 @@ export default function BookingModal({
                   type="button"
                   disabled={!selectedSlot}
                   onClick={() => setStep(2)}
-                  className="inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 disabled:opacity-50 text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 disabled:opacity-50 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-xs"
                 >
                   <span>Continue to Intake</span>
                   <ArrowRight className="w-4 h-4" />
@@ -514,20 +514,20 @@ export default function BookingModal({
             </div>
 
             {/* Step 2 Actions */}
-            <div className="pt-3 border-t border-sage-100 flex items-center justify-between">
+            <div className="pt-3 border-t border-sage-100 flex items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="inline-flex items-center gap-1.5 text-xs text-sage-700 hover:text-sage-900 font-medium"
+                className="inline-flex items-center gap-1.5 text-xs text-sage-700 hover:text-sage-900 font-medium px-2 py-2"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                Back
+                <span>Back</span>
               </button>
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition"
+                className="inline-flex items-center justify-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-xs"
               >
-                <span>{isFreeConsult ? "Proceed to Confirmation" : "Proceed to Payment"}</span>
+                <span>{isFreeConsult ? "To Confirmation" : "To Payment"}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -700,21 +700,21 @@ export default function BookingModal({
             )}
 
             {/* Step 3 Actions */}
-            <div className="pt-4 border-t border-sage-100 flex items-center justify-between">
+            <div className="pt-4 border-t border-sage-100 flex items-center justify-between gap-2">
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="inline-flex items-center gap-1.5 text-xs text-sage-700 hover:text-sage-900 font-medium"
+                className="inline-flex items-center gap-1.5 text-xs text-sage-700 hover:text-sage-900 font-medium px-2 py-2"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                Back
+                <span>Back</span>
               </button>
 
               <button
                 type="button"
                 disabled={isSubmitting}
                 onClick={handleFinalSubmit}
-                className="inline-flex items-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 text-white px-7 py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-md disabled:opacity-50"
+                className="inline-flex items-center justify-center gap-2 bg-terracotta-500 hover:bg-terracotta-600 text-white px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-md disabled:opacity-50"
               >
                 {isSubmitting ? (
                   <>

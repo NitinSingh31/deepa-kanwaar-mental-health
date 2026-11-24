@@ -236,19 +236,19 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
             <a
               href="https://wa.me/919877408869?text=Hello%20Deepa%20Kanwaar,%20I%20would%20like%20to%20inquire%20about%20your%20services."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
             >
               <Phone className="w-4 h-4" />
               <span>WhatsApp: 9877408869</span>
             </a>
             <button
               onClick={() => onSelectService("Psychotherapy")}
-              className="flex-shrink-0 bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
+              className="bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition text-center"
             >
               Schedule Online
             </button>
@@ -259,11 +259,17 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
 
       {/* Service Detail Modal */}
       {activeModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-sage-950/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl border border-sage-100 animate-in fade-in zoom-in-95 duration-150">
+        <div 
+          className="fixed inset-0 z-50 overflow-y-auto bg-sage-950/70 backdrop-blur-xs p-3 sm:p-4 flex items-start sm:items-center justify-center"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setActiveModal(null);
+          }}
+        >
+          <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-8 relative shadow-2xl border border-sage-100 my-auto text-left animate-in fade-in zoom-in-95 duration-150">
             <button
               onClick={() => setActiveModal(null)}
-              className="absolute top-5 right-5 p-2 rounded-full text-sage-600 hover:text-sage-900 hover:bg-sage-100 transition"
+              className="absolute top-4 right-4 p-2 rounded-full text-sage-600 hover:text-sage-900 hover:bg-sage-100 transition z-10"
+              aria-label="Close details"
             >
               <X className="w-5 h-5" />
             </button>
@@ -306,8 +312,8 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-sage-100">
-              <div className="text-xs text-sage-700">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-sage-100">
+              <div className="text-xs text-sage-700 text-center sm:text-left">
                 <span className="font-bold text-base text-sage-900">₹2,100</span> / 60 minutes (100% Online)
               </div>
               <button
@@ -316,7 +322,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
                   setActiveModal(null);
                   onSelectService(serviceName);
                 }}
-                className="bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs px-6 py-3 rounded-full font-semibold transition shadow-sm"
+                className="w-full sm:w-auto bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs px-6 py-3 rounded-full font-semibold transition shadow-sm text-center"
               >
                 Book This Service
               </button>

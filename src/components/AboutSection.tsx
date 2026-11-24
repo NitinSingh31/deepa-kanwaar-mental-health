@@ -21,7 +21,7 @@ export default function AboutSection({ onBookClick }: AboutSectionProps) {
           <div className="lg:col-span-5 flex justify-center">
             <div className="relative w-full max-w-md">
               <div className="relative bg-white rounded-3xl p-4 shadow-xl border border-sage-200/80">
-                <div className="relative h-[480px] w-full rounded-2xl overflow-hidden bg-linen-50">
+                <div className="relative h-[360px] sm:h-[480px] w-full rounded-2xl overflow-hidden bg-linen-50">
                   <Image
                     src="/images/deepa-portrait.jpg"
                     alt="Deepa Kanwaar - Psychologist"

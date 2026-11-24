@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 
 export default function FloatingWhatsApp() {
   return (
-    <aside aria-label="WhatsApp Support" className="fixed bottom-6 right-6 z-40">
+    <aside aria-label="WhatsApp Support" className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30">
       <a
         href="https://wa.me/919877408869?text=Hello%20Deepa%20Kanwaar,%20I%20would%20like%20to%20inquire%20about%20a%20therapy%20session."
         target="_blank"

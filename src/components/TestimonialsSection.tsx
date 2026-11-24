@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
           {TESTIMONIALS.map((item, index) => (
             <div
               key={index}
-              className="bg-linen-50 rounded-3xl p-8 border border-sage-100 shadow-xs flex flex-col justify-between relative"
+              className="bg-linen-50 rounded-3xl p-6 sm:p-8 border border-sage-100 shadow-xs flex flex-col justify-between relative"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">

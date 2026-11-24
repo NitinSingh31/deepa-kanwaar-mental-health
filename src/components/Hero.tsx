@@ -123,25 +123,25 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
           </div>
 
           {/* Right Column: Imagery with Deepa Portrait & Organic Shapes */}
-          <div className="lg:col-span-5 relative flex justify-center">
-            <div className="relative w-full max-w-md">
+          <div className="lg:col-span-5 relative flex justify-center px-2 sm:px-0">
+            <div className="relative w-full max-w-sm sm:max-w-md">
               {/* Backing decorative frames */}
-              <div className="absolute inset-0 bg-sage-500 rounded-3xl transform rotate-3 opacity-20 scale-105" />
-              <div className="absolute inset-0 bg-terracotta-500 rounded-3xl transform -rotate-2 opacity-15 scale-102" />
+              <div className="absolute inset-0 bg-sage-500 rounded-3xl transform rotate-2 sm:rotate-3 opacity-20 scale-100 sm:scale-105" />
+              <div className="absolute inset-0 bg-terracotta-500 rounded-3xl transform -rotate-1 sm:-rotate-2 opacity-15 scale-100 sm:scale-102" />
 
               {/* Main Portrait Card */}
               <div className="relative bg-white rounded-3xl p-3 shadow-xl border border-sage-100 overflow-hidden">
-                <div className="relative h-[420px] sm:h-[460px] w-full rounded-2xl overflow-hidden bg-linen-100">
+                <div className="relative h-[360px] sm:h-[460px] w-full rounded-2xl overflow-hidden bg-linen-100">
                   <Image
                     src="/images/deepa-portrait.jpg"
-                    alt="Deepa Kanwaar - Consulting Psychologist"
+                    alt="Deepa Kanwaar - Counselling Psychologist & Allied Health Provider"
                     fill
                     priority
                     className="object-cover object-top hover:scale-102 transition duration-500"
                   />
                   {/* Subtle gradient overlay at bottom for text contrast */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage-950/80 via-sage-950/40 to-transparent p-5 text-white">
-                    <p className="font-serif text-xl font-bold">Deepa Kanwaar</p>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage-950/80 via-sage-950/40 to-transparent p-4 sm:p-5 text-white">
+                    <p className="font-serif text-lg sm:text-xl font-bold">Deepa Kanwaar</p>
                     <p className="text-xs text-ochre-200 tracking-wide font-medium">
                       Counselling Psychologist &amp; Allied Health Provider
                     </p>
@@ -152,20 +152,20 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
                 </div>
 
                 {/* Floating Experience Badge */}
-                <div className="absolute -top-3 -right-3 bg-white border border-sage-200 rounded-2xl p-3 shadow-lg flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center text-sage-700">
-                    <Heart className="w-5 h-5 text-terracotta-500 fill-terracotta-500/20" />
+                <div className="absolute -top-3 right-1 sm:-right-3 bg-white border border-sage-200 rounded-2xl p-2.5 sm:p-3 shadow-lg flex items-center gap-2 sm:gap-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-sage-100 flex items-center justify-center text-sage-700">
+                    <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-terracotta-500 fill-terracotta-500/20" />
                   </div>
                   <div>
-                    <div className="text-xs text-sage-600 font-medium">Experience</div>
-                    <div className="text-sm font-bold text-sage-900">20+ Years &bull; Clinical Care</div>
+                    <div className="text-[10px] sm:text-xs text-sage-600 font-medium">Experience</div>
+                    <div className="text-xs sm:text-sm font-bold text-sage-900">20+ Years &bull; Clinical Care</div>
                   </div>
                 </div>
 
                 {/* Floating Rating / Trust Badge */}
-                <div className="absolute -bottom-3 -left-3 bg-white border border-sage-200 rounded-2xl py-2 px-3.5 shadow-lg flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-sage-600" />
-                  <span className="text-xs font-semibold text-sage-900">Verified Clinical Care</span>
+                <div className="absolute -bottom-3 left-1 sm:-left-3 bg-white border border-sage-200 rounded-2xl py-1.5 px-3 sm:py-2 sm:px-3.5 shadow-lg flex items-center gap-2">
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sage-600" />
+                  <span className="text-[11px] sm:text-xs font-semibold text-sage-900">Verified Clinical Care</span>
                 </div>
               </div>
             </div>

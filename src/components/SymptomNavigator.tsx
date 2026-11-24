@@ -138,7 +138,7 @@ export default function SymptomNavigator({
         </div>
 
         {/* Interactive Pill Cloud */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-4xl mx-auto mb-8 sm:mb-10">
           {TOPICS.map((topic) => {
             const isSelected = selectedTopic.id === topic.id;
             const TopicIcon = topic.icon;
@@ -147,13 +147,13 @@ export default function SymptomNavigator({
                 key={topic.id}
                 type="button"
                 onClick={() => setSelectedTopic(topic)}
-                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   isSelected
                     ? "bg-terracotta-500 text-white shadow-md scale-102 ring-2 ring-terracotta-400/40"
                     : "bg-linen-100 hover:bg-linen-200 text-sage-800 border border-sage-200/80 hover:border-terracotta-300"
                 }`}
               >
-                <TopicIcon className={`w-4 h-4 ${isSelected ? "text-white" : "text-terracotta-600"}`} />
+                <TopicIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSelected ? "text-white" : "text-terracotta-600"}`} />
                 <span>{topic.pillLabel}</span>
               </button>
             );
@@ -161,7 +161,7 @@ export default function SymptomNavigator({
         </div>
 
         {/* Dynamic Detail Card */}
-        <div className="max-w-4xl mx-auto bg-gradient-to-br from-linen-50 via-white to-linen-50 rounded-3xl p-6 sm:p-10 border border-sage-200 shadow-md">
+        <div className="max-w-4xl mx-auto bg-gradient-to-br from-linen-50 via-white to-linen-50 rounded-3xl p-4 sm:p-10 border border-sage-200 shadow-md">
           <div className="flex flex-col">
             
             {/* Top row of card */}

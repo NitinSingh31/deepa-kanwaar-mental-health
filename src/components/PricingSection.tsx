@@ -32,7 +32,7 @@ export default function PricingSection({ onBookClick, onFreeConsultClick }: Pric
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           
           {/* Card 1: Free Consultation */}
-          <div className="relative bg-white rounded-3xl p-8 sm:p-10 border-2 border-sage-200 shadow-lg flex flex-col justify-between hover:shadow-xl transition-all duration-300">
+          <div className="relative bg-white rounded-3xl p-6 sm:p-10 border-2 border-sage-200 shadow-lg flex flex-col justify-between hover:shadow-xl transition-all duration-300">
             <div className="absolute top-0 right-0 bg-sage-700 text-white text-[11px] uppercase font-bold tracking-widest py-1.5 px-5 rounded-bl-2xl">
               Introductory Fit
             </div>
@@ -89,7 +89,7 @@ export default function PricingSection({ onBookClick, onFreeConsultClick }: Pric
           </div>
 
           {/* Card 2: Comprehensive 60-Min Session */}
-          <div className="relative bg-white rounded-3xl p-8 sm:p-10 border-2 border-terracotta-500/40 shadow-xl flex flex-col justify-between hover:shadow-2xl transition-all duration-300 ring-2 ring-terracotta-500/10">
+          <div className="relative bg-white rounded-3xl p-6 sm:p-10 border-2 border-terracotta-500/40 shadow-xl flex flex-col justify-between hover:shadow-2xl transition-all duration-300 ring-2 ring-terracotta-500/10">
             <div className="absolute top-0 right-0 bg-terracotta-500 text-white text-[11px] uppercase font-bold tracking-widest py-1.5 px-5 rounded-bl-2xl">
               Comprehensive Care
             </div>

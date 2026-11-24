@@ -24,13 +24,13 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
   return (
     <>
       {/* Top Emergency / Helplines Strip */}
-      <div className="bg-sage-900 text-sage-100 text-xs py-2 px-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-3.5 h-3.5 text-ochre-400" />
-            <span>Strictly Confidential & Safe Psychological Care</span>
+      <div className="bg-sage-900 text-sage-100 text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <ShieldCheck className="w-3.5 h-3.5 text-ochre-400 flex-shrink-0" />
+            <span>Strictly Confidential &amp; Safe Psychological Care</span>
           </div>
-          <div className="flex items-center gap-4 text-sage-200">
+          <div className="flex items-center gap-3 sm:gap-4 text-sage-200">
             <span>24/7 Crisis Hotline: <strong className="text-white">14416 (Tele-MANAS)</strong></span>
             <span className="hidden sm:inline">|</span>
             <Link
@@ -49,8 +49,8 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-sage-200 shadow-xs flex-shrink-0 bg-white">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 pr-2">
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-sage-200 shadow-xs flex-shrink-0 bg-white">
                 <Image
                   src="/images/logo-icon.png"
                   alt="Deepa Kanwaar Logo Icon"
@@ -58,12 +58,12 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
                   className="object-cover group-hover:scale-105 transition duration-300"
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="font-serif font-bold text-lg sm:text-xl tracking-tight text-sage-900 leading-tight">
+              <div className="flex flex-col min-w-0">
+                <span className="font-serif font-bold text-base sm:text-xl tracking-tight text-sage-900 leading-tight truncate">
                   DEEPA KANWAAR
                 </span>
-                <span className="text-[10px] sm:text-[11px] tracking-wider uppercase font-semibold text-terracotta-600">
-                  Counselling Psychologist &bull; Allied Health Provider
+                <span className="text-[9px] sm:text-[11px] tracking-wider uppercase font-semibold text-terracotta-600 truncate">
+                  Counselling Psychologist
                 </span>
               </div>
             </Link>
@@ -116,22 +116,17 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
             </div>
 
             {/* Mobile menu trigger */}
-            <div className="flex md:hidden items-center gap-2">
-              <button
-                onClick={handleFreeConsult}
-                className="bg-terracotta-50 text-terracotta-700 border border-terracotta-200 text-xs px-2.5 py-1.5 rounded-full font-semibold"
-              >
-                Free Consult
-              </button>
+            <div className="flex md:hidden items-center gap-2 flex-shrink-0">
               <button
                 onClick={onBookClick}
-                className="bg-terracotta-500 text-white text-xs px-3 py-1.5 rounded-full font-medium"
+                className="bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs px-3.5 py-1.5 rounded-full font-semibold shadow-xs transition"
               >
-                Book
+                Book Session
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-sage-800 hover:text-sage-900 rounded-lg hover:bg-sage-100"
+                className="p-2 text-sage-800 hover:text-sage-900 rounded-lg hover:bg-sage-100 transition"
+                aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>

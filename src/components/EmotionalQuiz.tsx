@@ -139,7 +139,7 @@ export default function EmotionalQuiz({ onClaimFreeConsult }: EmotionalQuizProps
         </div>
 
         {/* Main Quiz Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-sage-200/80 transition-all duration-300">
+        <div className="bg-white rounded-3xl p-4 sm:p-10 shadow-xl border border-sage-200/80 transition-all duration-300">
           
           {/* Active Questions Flow (0 to 2) */}
           {currentStep < 3 && (
@@ -177,7 +177,7 @@ export default function EmotionalQuiz({ onClaimFreeConsult }: EmotionalQuizProps
                     key={idx}
                     type="button"
                     onClick={() => handleSelectOption(option.trait)}
-                    className="w-full text-left p-4 sm:p-5 rounded-2xl border border-sage-200 hover:border-terracotta-400 bg-linen-50/50 hover:bg-terracotta-50/40 transition-all duration-200 group flex items-start justify-between gap-4 cursor-pointer"
+                    className="w-full text-left p-3.5 sm:p-5 rounded-2xl border border-sage-200 hover:border-terracotta-400 bg-linen-50/50 hover:bg-terracotta-50/40 transition-all duration-200 group flex items-start justify-between gap-3 sm:gap-4 cursor-pointer"
                   >
                     <div>
                       <div className="text-sm sm:text-base font-bold text-sage-900 group-hover:text-terracotta-700 transition">

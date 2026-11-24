@@ -447,17 +447,10 @@ export default function AdminPage() {
                           {appt.sessionType}
                         </div>
                         <div className="mt-1 flex items-center gap-1.5">
-                          {appt.format === "online" ? (
-                            <span className="inline-flex items-center gap-1 text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">
-                              <Video className="w-3 h-3" />
-                              Online Meet
-                            </span>
-                          ) : (
-                            <span className="inline-flex items-center gap-1 text-[11px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded-full font-medium">
-                              <MapPin className="w-3 h-3" />
-                              In Clinic
-                            </span>
-                          )}
+                          <span className="inline-flex items-center gap-1 text-[11px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">
+                            <Video className="w-3 h-3" />
+                            Online Meet
+                          </span>
                         </div>
                       </td>
 

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -14,10 +14,16 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "Deepa Kanwaar Mental Health | Consulting Psychologist",
+  title: "Deepa Kanwaar Mental Health | Counselling Psychologist & Allied Health Provider",
   description:
-    "Transformative psychological counseling and guidance to help you heal, grow, and thrive. Individual psychotherapy, couples counseling, and stress management.",
+    "Transformative online psychological counseling and guidance. Psychotherapy, relaxation techniques, group therapy, couple counselling, and de-addiction support with 20+ years clinical experience.",
   icons: {
     icon: "/images/logo-icon.png",
   },
