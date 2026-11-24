@@ -376,15 +376,20 @@ export default function BookingModal({
                       type="button"
                       disabled={!item.isAvailable}
                       onClick={() => setSelectedSlot(item.slot)}
-                      className={`py-2.5 px-3 rounded-xl text-xs font-medium border text-center transition ${
+                      className={`py-2 px-2.5 rounded-xl text-xs font-medium border text-center transition flex flex-col items-center justify-center min-h-[46px] ${
                         !item.isAvailable
-                          ? "bg-sage-100/50 text-sage-400 border-sage-100 cursor-not-allowed line-through"
+                          ? "bg-sage-100/60 text-sage-400 border-sage-200/50 cursor-not-allowed opacity-60"
                           : selectedSlot === item.slot
                           ? "bg-terracotta-500 text-white border-terracotta-600 font-semibold shadow-xs"
                           : "bg-white text-sage-800 border-sage-200 hover:border-terracotta-300 hover:bg-terracotta-50/30"
                       }`}
                     >
-                      {item.slot}
+                      <span>{item.slot}</span>
+                      {!item.isAvailable && (
+                        <span className="text-[9px] font-bold tracking-wider uppercase text-sage-500 mt-0.5">
+                          Booked
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>

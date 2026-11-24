@@ -24,44 +24,7 @@ const DEFAULT_SETTINGS: DoctorSettings = {
   ],
 };
 
-const INITIAL_APPOINTMENTS: Appointment[] = [
-  {
-    id: "DKM-2026-891",
-    clientName: "Ananya Sharma",
-    clientEmail: "ananya.sharma@example.com",
-    clientPhone: "+91 98234 56789",
-    sessionType: "Anxiety & Stress Management",
-    format: "online",
-    date: new Date(Date.now() + 86400000).toISOString().split("T")[0], // Tomorrow
-    timeSlot: "11:30 AM - 12:30 PM",
-    concerns: "Dealing with intense workplace burnout and social anxiety since recent job transition.",
-    fee: 2100,
-    paymentMethod: "online",
-    paymentStatus: "paid",
-    bookingStatus: "confirmed",
-    meetingLink: "https://meet.google.com/dkm-anx-ser",
-    adminNotes: "Client requested focus on cognitive restructuring techniques.",
-    createdAt: new Date(Date.now() - 3600000 * 5).toISOString(),
-  },
-  {
-    id: "DKM-2026-892",
-    clientName: "Rahul & Meera Verma",
-    clientEmail: "rahul.verma@example.com",
-    clientPhone: "+91 99876 54321",
-    sessionType: "Relationship & Couples Counseling",
-    format: "online",
-    date: new Date(Date.now() + 86400000 * 2).toISOString().split("T")[0],
-    timeSlot: "05:00 PM - 06:00 PM",
-    concerns: "Looking for premarital guidance to improve emotional communication.",
-    fee: 2100,
-    paymentMethod: "pay_later",
-    paymentStatus: "pending_verification",
-    bookingStatus: "pending",
-    meetingLink: "https://meet.google.com/dkm-cpl-pre",
-    adminNotes: "Online session via Google Meet. Sent meet link via WhatsApp.",
-    createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
-  },
-];
+const INITIAL_APPOINTMENTS: Appointment[] = [];
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) {
