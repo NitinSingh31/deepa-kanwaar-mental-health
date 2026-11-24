@@ -53,11 +53,11 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
 
       {/* Main Navigation */}
       <header className="sticky top-0 z-40 bg-linen-50/90 backdrop-blur-md border-b border-sage-100/80 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0 pr-2">
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-sage-200 shadow-xs flex-shrink-0 bg-white">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20">
+            {/* Logo - Name is never truncated on mobile */}
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
+              <div className="relative w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-sage-200 shadow-xs flex-shrink-0 bg-white">
                 <Image
                   src="/images/logo-icon.png"
                   alt="Deepa Kanwaar Logo Icon"
@@ -65,11 +65,11 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
                   className="object-cover group-hover:scale-105 transition duration-300"
                 />
               </div>
-              <div className="flex flex-col min-w-0">
-                <span className="font-serif font-bold text-base sm:text-xl tracking-tight text-sage-900 leading-tight truncate">
+              <div className="flex flex-col flex-shrink-0">
+                <span className="font-serif font-bold text-[15px] sm:text-lg md:text-xl tracking-tight text-sage-900 leading-tight whitespace-nowrap">
                   DEEPA KANWAAR
                 </span>
-                <span className="text-[9px] sm:text-[11px] tracking-wider uppercase font-semibold text-terracotta-600 truncate">
+                <span className="text-[9px] sm:text-[10px] md:text-[11px] tracking-wider uppercase font-semibold text-terracotta-600 whitespace-nowrap">
                   Counselling Psychologist
                 </span>
               </div>
@@ -123,19 +123,20 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
             </div>
 
             {/* Mobile menu trigger */}
-            <div className="flex md:hidden items-center gap-2 flex-shrink-0">
+            <div className="flex md:hidden items-center gap-1.5 sm:gap-2 flex-shrink-0">
               <button
                 onClick={onBookClick}
-                className="bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs px-3.5 py-1.5 rounded-full font-semibold shadow-xs transition"
+                className="bg-terracotta-500 hover:bg-terracotta-600 text-white text-xs px-3 sm:px-3.5 py-1.5 rounded-full font-semibold shadow-xs transition active:scale-95 whitespace-nowrap"
               >
-                Book Session
+                <span className="hidden sm:inline">Book Session</span>
+                <span className="sm:hidden">Book</span>
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-sage-800 hover:text-sage-900 rounded-lg hover:bg-sage-100 transition"
+                className="p-1.5 sm:p-2 text-sage-800 hover:text-sage-900 rounded-lg hover:bg-sage-100 transition"
                 aria-label="Toggle navigation menu"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
               </button>
             </div>
           </div>
