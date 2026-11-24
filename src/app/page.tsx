@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import EmergencyDisclaimer from "@/components/EmergencyDisclaimer";
 import SymptomNavigator from "@/components/SymptomNavigator";
 import ServicesSection from "@/components/ServicesSection";
 import AboutSection from "@/components/AboutSection";
@@ -48,9 +47,6 @@ export default function Home() {
         onBookClick={() => handleOpenBooking()}
         onFreeConsultClick={() => handleOpenFreeConsult()}
       />
-
-      {/* Emergency Helpline Disclaimer */}
-      <EmergencyDisclaimer />
 
       {/* Interactive Symptom Navigator ("What Are You Navigating Right Now?") */}
       <SymptomNavigator

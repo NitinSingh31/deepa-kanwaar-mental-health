@@ -23,15 +23,22 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
 
   return (
     <>
-      {/* Top Emergency / Helplines Strip */}
+      {/* Top Header Information Strip */}
       <div className="bg-sage-900 text-sage-100 text-[11px] sm:text-xs py-1.5 sm:py-2 px-3 sm:px-4">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-1.5 sm:gap-2">
           <div className="flex items-center gap-1.5 sm:gap-2">
             <ShieldCheck className="w-3.5 h-3.5 text-ochre-400 flex-shrink-0" />
-            <span>Strictly Confidential &amp; Safe Psychological Care</span>
+            <span>Strictly Confidential &amp; Safe Psychological Care &bull; 100% Online Worldwide</span>
           </div>
           <div className="flex items-center gap-3 sm:gap-4 text-sage-200">
-            <span>24/7 Crisis Hotline: <strong className="text-white">14416 (Tele-MANAS)</strong></span>
+            <a
+              href="https://wa.me/919877408869"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-ochre-300 transition"
+            >
+              WhatsApp: +91 98774 08869
+            </a>
             <span className="hidden sm:inline">|</span>
             <Link
               href="/admin"
