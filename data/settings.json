@@ -1,0 +1,24 @@
+{
+  "doctorName": "Deepa Kanwaar",
+  "title": "Consulting Psychologist (M.A., RCI Reg.)",
+  "sessionFee": 2100,
+  "upiId": "deepakanwaar.therapy@oksbi",
+  "whatsappNumber": "+919876543210",
+  "clinicAddress": "Suite 402, Serene Mind Wellness Clinic, Park Street, New Delhi",
+  "workingDays": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "availableSlots": [
+    "10:00 AM - 11:00 AM",
+    "11:30 AM - 12:30 PM",
+    "02:00 PM - 03:00 PM",
+    "03:30 PM - 04:30 PM",
+    "05:00 PM - 06:00 PM",
+    "06:30 PM - 07:30 PM"
+  ]
+}
