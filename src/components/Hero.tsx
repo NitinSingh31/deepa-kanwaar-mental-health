@@ -35,7 +35,7 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span>Slots Open This Week &bull; Online &amp; Clinic</span>
+                <span>Slots Open This Week &bull; 100% Online Video (Google Meet)</span>
               </div>
             </div>
 
@@ -72,11 +72,11 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
                   Safe &amp; Confidential Care
                 </div>
                 <div className="text-sm font-bold text-sage-900">
-                  RCI Licensed Guidance &bull; <span className="text-terracotta-600 font-semibold">100% Private</span>
+                  20+ Years Clinical Experience &bull; <span className="text-terracotta-600 font-semibold">100% Private</span>
                 </div>
               </div>
               <div className="border-l border-sage-200 pl-3 text-xs text-sage-600 hidden sm:block">
-                Online &amp; In-Clinic
+                Purely Online (Google Meet)
               </div>
             </div>
 
@@ -109,15 +109,15 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
             <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-sage-700">
               <div className="flex items-center gap-2 justify-center lg:justify-start">
                 <CheckCircle2 className="w-4 h-4 text-sage-600 flex-shrink-0" />
-                <span>100% Confidential Space</span>
+                <span>100% Confidential Online Space</span>
               </div>
               <div className="flex items-center gap-2 justify-center lg:justify-start">
                 <CheckCircle2 className="w-4 h-4 text-sage-600 flex-shrink-0" />
-                <span>RCI Licensed Guidance</span>
+                <span>Allied Health Provider</span>
               </div>
               <div className="flex items-center gap-2 justify-center lg:justify-start">
                 <CheckCircle2 className="w-4 h-4 text-sage-600 flex-shrink-0" />
-                <span>Instant Google Meet or Clinic</span>
+                <span>Encrypted Google Meet Worldwide</span>
               </div>
             </div>
           </div>
@@ -143,10 +143,10 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-sage-950/80 via-sage-950/40 to-transparent p-5 text-white">
                     <p className="font-serif text-xl font-bold">Deepa Kanwaar</p>
                     <p className="text-xs text-ochre-200 tracking-wide font-medium">
-                      Consulting Psychologist &bull; M.A., RCI Reg.
+                      Counselling Psychologist &amp; Allied Health Provider
                     </p>
                     <p className="text-[11px] text-sage-100/90 mt-1 italic">
-                      &quot;You don&apos;t have to navigate life&apos;s complexities alone.&quot;
+                      &quot;Your journey to healing starts here.&quot;
                     </p>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default function Hero({ onBookClick, onFreeConsultClick }: HeroProps) {
                   </div>
                   <div>
                     <div className="text-xs text-sage-600 font-medium">Experience</div>
-                    <div className="text-sm font-bold text-sage-900">8+ Years &bull; 1500+ Hrs</div>
+                    <div className="text-sm font-bold text-sage-900">20+ Years &bull; Clinical Care</div>
                   </div>
                 </div>
 

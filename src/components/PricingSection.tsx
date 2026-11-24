@@ -122,7 +122,7 @@ export default function PricingSection({ onBookClick, onFreeConsultClick }: Pric
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-terracotta-500 flex-shrink-0 mt-0.5" />
-                  <span>Choice of Google Meet (Online) or In-Person Clinic (New Delhi)</span>
+                  <span>100% Online via Encrypted Google Meet (India &amp; Worldwide)</span>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-terracotta-500 flex-shrink-0 mt-0.5" />
@@ -155,7 +155,7 @@ export default function PricingSection({ onBookClick, onFreeConsultClick }: Pric
         <div className="mt-12 text-center text-xs text-sage-600">
           Have questions about therapy bundles or corporate wellness sessions?{" "}
           <a
-            href="https://wa.me/919876543210?text=Hi%20Deepa,%20I%20would%20like%20to%20ask%20about%20therapy%20packages."
+            href="https://wa.me/919877408869?text=Hi%20Deepa,%20I%20would%20like%20to%20ask%20about%20therapy%20packages."
             target="_blank"
             rel="noopener noreferrer"
             className="text-terracotta-600 font-semibold underline underline-offset-2"

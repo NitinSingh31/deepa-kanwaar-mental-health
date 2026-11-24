@@ -7,7 +7,7 @@ const STEPS = [
   {
     step: "01",
     title: "Select Your Preferred Slot",
-    description: "Choose between an Online Video consultation (Google Meet) or an In-Person clinic visit at a date and time that fits your schedule.",
+    description: "Reserve your 100% online video consultation (Google Meet) at a date and time that fits your schedule from the comfort of your home.",
     icon: CalendarCheck,
   },
   {

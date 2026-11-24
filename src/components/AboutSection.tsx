@@ -54,18 +54,18 @@ export default function AboutSection({ onBookClick }: AboutSectionProps) {
             </h2>
 
             <p className="text-base text-terracotta-600 font-medium">
-              Consulting Psychologist &bull; M.A. Clinical Psychology &bull; RCI Registered
+              Counselling Psychologist &bull; Allied Health Provider &bull; 20+ Years Clinical Practice
             </p>
 
             <div className="space-y-4 text-sm sm:text-base text-sage-800 leading-relaxed">
               <p>
-                For over eight years, I have walked alongside individuals and couples navigating the delicate terrain of emotional distress, anxiety, depression, and life transitions.
+                For over twenty years, I have walked alongside individuals, couples, and groups navigating the delicate terrain of emotional distress, mental health challenges, trauma, and personal healing.
               </p>
               <p>
-                My clinical practice is rooted in warmth, empathy, and evidence-based science. I believe therapy is not an interrogation or a set of rigid instructions—it is a collaborative sanctuary where we gently untangle the thoughts, behaviors, and emotional patterns that hold you back.
+                My practice is rooted in warmth, empathy, and evidence-based clinical science. I believe therapy is not an interrogation or a set of rigid instructions—it is a collaborative sanctuary where we gently untangle the thoughts, behaviors, and emotional patterns that hold you back.
               </p>
               <p>
-                Whether you are seeking relief from overwhelming workplace burnout, processing relationship conflicts, or exploring your self-worth, our work together is paced entirely around your comfort and emotional safety.
+                As a dedicated Allied Health Provider conducting <strong>100% online sessions</strong> via encrypted Google Meet, I offer a secure, accessible, and completely confidential space for clients across India and worldwide.
               </p>
             </div>
 
@@ -105,24 +105,24 @@ export default function AboutSection({ onBookClick }: AboutSectionProps) {
             {/* Credentials / Affiliations */}
             <div className="pt-2 border-t border-sage-200">
               <h5 className="text-xs font-bold uppercase tracking-wider text-sage-700 mb-3">
-                Professional Accreditations:
+                Professional Expertise &amp; Credentials:
               </h5>
               <div className="flex flex-wrap gap-2 text-xs text-sage-800">
                 <span className="bg-white px-3 py-1.5 rounded-lg border border-sage-200 flex items-center gap-1.5">
                   <CheckCircle className="w-3.5 h-3.5 text-sage-600" />
-                  M.A. Clinical Psychology
+                  20+ Years Clinical Counseling Experience
                 </span>
                 <span className="bg-white px-3 py-1.5 rounded-lg border border-sage-200 flex items-center gap-1.5">
                   <CheckCircle className="w-3.5 h-3.5 text-sage-600" />
-                  Rehabilitation Council of India (RCI) Reg.
+                  Allied Health Provider
                 </span>
                 <span className="bg-white px-3 py-1.5 rounded-lg border border-sage-200 flex items-center gap-1.5">
                   <CheckCircle className="w-3.5 h-3.5 text-sage-600" />
-                  Certified Cognitive Behavioral Therapist (CBT)
+                  Trauma-Informed &amp; Sexual Abuse Counseling
                 </span>
                 <span className="bg-white px-3 py-1.5 rounded-lg border border-sage-200 flex items-center gap-1.5">
                   <CheckCircle className="w-3.5 h-3.5 text-sage-600" />
-                  Mindfulness &amp; ACT Practitioner
+                  Relaxation &amp; De-addiction Modalities
                 </span>
               </div>
             </div>

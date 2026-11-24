@@ -6,13 +6,12 @@ import {
   ArrowRight, 
   CheckCircle2, 
   Brain, 
-  Flame, 
   HeartHandshake, 
-  Activity, 
-  Compass, 
-  ShieldAlert, 
+  Users,
+  ShieldAlert,
+  ShieldCheck,
   HelpCircle,
-  Clock
+  Video
 } from "lucide-react";
 
 interface SymptomTopic {
@@ -29,81 +28,81 @@ interface SymptomTopic {
 const TOPICS: SymptomTopic[] = [
   {
     id: "overthinking",
-    pillLabel: "Overthinking & Racing Thoughts",
-    category: "Anxiety & Stress",
+    pillLabel: "Overthinking, Anxiety & Depression",
+    category: "Mental Health & Mood",
     icon: Brain,
     userFeeling:
-      "Your mind feels like it has 20 tabs open at once. You analyze past conversations, dread worst-case scenarios, and struggle to switch off even when trying to sleep.",
-    serviceMatch: "Anxiety & Panic Management",
+      "Your mind feels like it has 20 tabs open at once. Constant worry, dreading worst-case scenarios, feelings of low mood, or sudden panic keep you exhausted.",
+    serviceMatch: "Psychotherapy",
     clinicalApproach:
-      "We use Cognitive Restructuring (CBT) and somatic down-regulation to slow down neural threat alarms and restore mental quiet.",
+      "Cognitive Behavioral Therapy (CBT) and compassionate psychodynamic reframing to dismantle negative thought spirals and build emotional equilibrium.",
     firstStepTip:
-      "Learn how to separate helpful problem-solving from unhelpful rumination loops.",
+      "Learn how to separate real actionable problems from automatic catastrophic thoughts.",
   },
   {
-    id: "burnout",
-    pillLabel: "Corporate Burnout & Exhaustion",
-    category: "Workplace Mental Health",
-    icon: Flame,
+    id: "restlessness",
+    pillLabel: "Physical Restlessness & Stress",
+    category: "Somatic Distress",
+    icon: Sparkles,
     userFeeling:
-      "Dreading Monday mornings, feeling depleted by Slack messages, and wondering if you have lost your edge. You're exhausted but feel guilty whenever you rest.",
-    serviceMatch: "Work-Life Burnout & Executive Stress",
+      "Your chest feels tight, your breathing is shallow, and your body stays in a constant state of hyper-alert fight-or-flight, making deep sleep or true rest impossible.",
+    serviceMatch: "Relaxation Techniques",
     clinicalApproach:
-      "Boundary inoculation, nervous system recovery pacing, and detaching your self-worth from non-stop workplace performance.",
+      "Vagus nerve down-regulation, diaphragmatic breathwork, and progressive muscle relaxation (PMR) to reset your physical nervous system.",
     firstStepTip:
-      "Identify your silent energy drains and establish firm professional boundaries without guilt.",
+      "Practice an immediate 3-minute somatic breath pacing anchor to physically discharge tension.",
   },
   {
     id: "relationship",
-    pillLabel: "Relationship Friction & Distance",
+    pillLabel: "Relationship Friction & Communication",
     category: "Couples & Marital",
     icon: HeartHandshake,
     userFeeling:
-      "Having the exact same argument over and over. One person shuts down while the other feels unheard, creating an emotional wall between you and your partner.",
-    serviceMatch: "Relationship & Couples Counseling",
+      "Having the exact same arguments over and over. One person shuts down while the other feels unheard, creating an emotional wall between you and your partner.",
+    serviceMatch: "Individual and Couple Counselling",
     clinicalApproach:
-      "Emotionally Focused Therapy (EFT) to decode underlying attachment needs and replace defensive walls with open, honest dialogue.",
+      "Emotionally Focused Therapy (EFT) to decode underlying emotional needs, replace defensive barriers with vulnerability, and realign mutual trust.",
     firstStepTip:
-      "Discover the hidden emotional trigger beneath recurring daily disagreements.",
+      "Identify the unspoken emotional vulnerability beneath repeating everyday friction.",
   },
   {
-    id: "panic",
-    pillLabel: "Sudden Panic & Physical Restlessness",
-    category: "Somatic Distress",
-    icon: Activity,
-    userFeeling:
-      "Heart pounding, shallow breathing, chest tightness, or a sudden rush of dread in crowded spaces, meetings, or quiet moments.",
-    serviceMatch: "Anxiety & Panic Management",
-    clinicalApproach:
-      "Vagus nerve stimulation, diaphragmatic resetting, and somatic exposure so physical sensations no longer trigger panic.",
-    firstStepTip:
-      "Build a reliable 90-second physiological anchor to de-escalate acute panic.",
-  },
-  {
-    id: "boundaries",
-    pillLabel: "People-Pleasing & Saying 'No'",
-    category: "Self-Worth",
+    id: "de-addiction",
+    pillLabel: "Habit Loops & Substance Dependency",
+    category: "Habit Transformation",
     icon: ShieldAlert,
     userFeeling:
-      "Saying 'yes' when every fiber in you wants to say 'no'. You fear disappointing others, taking on everyone else's emotional burden at the expense of your own peace.",
-    serviceMatch: "Personal Growth & Self-Worth",
+      "Using substances, alcohol, gaming, or compulsive behaviors to cope with overwhelming stress or loneliness, feeling caught in a cycle of regret and relapse.",
+    serviceMatch: "De-addiction Counselling",
     clinicalApproach:
-      "Assertiveness conditioning, differentiating kindness from self-betrayal, and building healthy emotional autonomy.",
+      "Motivational interviewing, identifying emotional triggers, urge surfing, and creating structured, non-judgmental relapse prevention plans.",
     firstStepTip:
-      "Learn the art of the compassionate pause before committing your energy to others.",
+      "Map out the exact high-risk emotional triggers that precede compulsive urges.",
   },
   {
-    id: "imposter",
-    pillLabel: "Imposter Syndrome & Self-Doubt",
-    category: "Identity & Growth",
-    icon: Compass,
+    id: "trauma",
+    pillLabel: "Trauma & Sexual Abuse Healing",
+    category: "Trauma Recovery",
+    icon: ShieldCheck,
     userFeeling:
-      "No matter what you achieve, a persistent inner voice whispers that you got lucky and will soon be exposed. Perfectionism becomes a trap to hide self-doubt.",
-    serviceMatch: "Personal Growth & Self-Worth",
+      "Carrying unresolved past pain, memories that trigger sudden emotional overwhelm, flashbacks, or a profound loss of safety and bodily autonomy.",
+    serviceMatch: "Sexual Abuse Counselling",
     clinicalApproach:
-      "Inner critic restructuring, reconciling perceived vs actual competence, and cultivating grounded self-compassion.",
+      "Safe, trauma-informed pacing, somatic grounding, and gentle compassion-focused processing in an absolute, strictly confidential environment.",
     firstStepTip:
-      "Uncover why external praise never feels quite enough and anchor internal confidence.",
+      "Anchor your present safety so difficult memories lose their overwhelming power over your day.",
+  },
+  {
+    id: "isolation",
+    pillLabel: "Feeling Isolated & Needing Peer Support",
+    category: "Collective Healing",
+    icon: Users,
+    userFeeling:
+      "Feeling like no one around you truly understands what you are going through, leading to emotional loneliness and isolation.",
+    serviceMatch: "Group Therapy",
+    clinicalApproach:
+      "Facilitated small-group reflection circles where shared experiences, peer empathy, and collective coping dismantle shame and build resilience.",
+    firstStepTip:
+      "Experience the profound relief of hearing 'I feel that exact same way too' in a safe space.",
   },
 ];
 
@@ -161,18 +160,18 @@ export default function SymptomNavigator({
           })}
         </div>
 
-        {/* Dynamic Empathy & Action Card */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-linen-50 rounded-3xl p-6 sm:p-10 border-2 border-sage-200 shadow-md relative overflow-hidden transition-all duration-300">
+        {/* Dynamic Detail Card */}
+        <div className="max-w-4xl mx-auto bg-gradient-to-br from-linen-50 via-white to-linen-50 rounded-3xl p-6 sm:p-10 border border-sage-200 shadow-md">
+          <div className="flex flex-col">
             
-            {/* Top Accent Strip */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-6 border-b border-sage-200">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-white border border-sage-200 flex items-center justify-center text-terracotta-600 shadow-2xs">
+            {/* Top row of card */}
+            <div className="flex items-center justify-between pb-6 border-b border-sage-200/80 flex-wrap gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="w-12 h-12 rounded-2xl bg-terracotta-100 border border-terracotta-200 flex items-center justify-center text-terracotta-700">
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <span className="text-xs uppercase tracking-wider font-bold text-terracotta-600">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-terracotta-600 block">
                     {selectedTopic.category}
                   </span>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-sage-900">
@@ -181,12 +180,12 @@ export default function SymptomNavigator({
                 </div>
               </div>
 
-              <span className="text-xs font-semibold bg-white border border-sage-200 text-sage-700 px-3.5 py-1 rounded-full">
-                Recommended Focus
-              </span>
+              <div className="text-xs font-semibold px-3.5 py-1.5 rounded-full bg-sage-100 text-sage-800 border border-sage-200">
+                20+ Years Clinical Insight
+              </div>
             </div>
 
-            {/* Content Details */}
+            {/* Middle 2-col content */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 my-6 items-start">
               
               {/* Left Column: What It Feels Like */}
@@ -214,7 +213,7 @@ export default function SymptomNavigator({
               <div className="md:col-span-5 bg-white rounded-2xl p-5 border border-sage-200/80 space-y-3.5">
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-sage-500 block">
-                    Specialized Counseling:
+                    Recommended Service:
                   </span>
                   <span className="font-serif text-base font-bold text-sage-900 block">
                     {selectedTopic.serviceMatch}
@@ -222,13 +221,13 @@ export default function SymptomNavigator({
                 </div>
 
                 <div className="text-xs text-sage-700 leading-relaxed bg-linen-50 p-3 rounded-xl border border-sage-100">
-                  <span className="font-semibold text-sage-900 block mb-1">Evidence-Based Method:</span>
+                  <span className="font-semibold text-sage-900 block mb-1">Clinical Approach:</span>
                   <span>{selectedTopic.clinicalApproach}</span>
                 </div>
 
                 <div className="text-xs text-sage-600 flex items-center gap-1.5 pt-1">
-                  <Clock className="w-3.5 h-3.5 text-sage-500" />
-                  <span>Available via Online Video or In-Clinic</span>
+                  <Video className="w-3.5 h-3.5 text-sage-500" />
+                  <span>100% Online via Encrypted Google Meet</span>
                 </div>
               </div>
 

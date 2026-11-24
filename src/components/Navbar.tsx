@@ -62,8 +62,8 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
                 <span className="font-serif font-bold text-lg sm:text-xl tracking-tight text-sage-900 leading-tight">
                   DEEPA KANWAAR
                 </span>
-                <span className="text-[11px] sm:text-xs tracking-widest uppercase font-medium text-terracotta-600">
-                  Mental Health &bull; Consulting Psychologist
+                <span className="text-[10px] sm:text-[11px] tracking-wider uppercase font-semibold text-terracotta-600">
+                  Counselling Psychologist &bull; Allied Health Provider
                 </span>
               </div>
             </Link>
@@ -90,11 +90,11 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
             {/* Desktop Action Buttons */}
             <div className="hidden md:flex items-center gap-3">
               <a
-                href="https://wa.me/919876543210?text=Hello%20Deepa%20Kanwaar,%20I%20would%20like%20to%20inquire%20about%20a%20counseling%20session."
+                href="https://wa.me/919877408869?text=Hello%20Deepa%20Kanwaar,%20I%20would%20like%20to%20inquire%20about%20a%20counseling%20session."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-full text-sage-700 hover:text-sage-900 hover:bg-sage-100 transition border border-sage-200"
-                title="WhatsApp Support"
+                title="WhatsApp Deepa"
               >
                 <Phone className="w-4 h-4" />
               </a>

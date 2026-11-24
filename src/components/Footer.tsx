@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Heart, ShieldCheck, Lock } from "lucide-react";
+import { Mail, Phone, Heart, ShieldCheck, Lock, Globe } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -27,18 +27,18 @@ export default function Footer() {
                   DEEPA KANWAAR
                 </span>
                 <span className="text-xs uppercase tracking-widest text-ochre-300 font-bold">
-                  Mental Health &bull; Consulting Psychologist
+                  Counselling Psychologist &bull; Allied Health Provider
                 </span>
               </div>
             </div>
 
             <p className="text-sm text-sage-200 leading-relaxed max-w-sm">
-              Providing compassionate, scientifically verified psychotherapy to help individuals, couples, and professionals overcome distress, regain balance, and thrive.
+              Compassionate care for your well-being. Working with all kinds of mental health issues through 20+ years of dedicated clinical experience.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-sage-300">
               <ShieldCheck className="w-4 h-4 text-ochre-400" />
-              <span>RCI Registered Psychologist &bull; 100% Confidential</span>
+              <span>20+ Years Clinical Practice &bull; 100% Confidential</span>
             </div>
           </div>
 
@@ -85,17 +85,32 @@ export default function Footer() {
           {/* Contact Details */}
           <div className="lg:col-span-4 space-y-3">
             <h4 className="font-serif font-bold text-sm text-white uppercase tracking-wider">
-              Contact &amp; Clinic
+              Contact &amp; Consultations
             </h4>
             <ul className="space-y-3 text-xs sm:text-sm text-sage-200">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-terracotta-400 flex-shrink-0 mt-0.5" />
-                <span>Suite 402, Serene Mind Wellness Clinic, Park Street, New Delhi</span>
+                <Globe className="w-4 h-4 text-terracotta-400 flex-shrink-0 mt-0.5" />
+                <span>Purely Online Practice &bull; Encrypted Google Meet Sessions (Pan-India &amp; Worldwide)</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-terracotta-400 flex-shrink-0" />
-                <a href="tel:+919876543210" className="hover:text-white transition">
-                  +91 98765 43210
+                <a href="tel:+919877408869" className="hover:text-white transition">
+                  +91 98774 08869
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <svg className="w-4 h-4 text-terracotta-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+                <a
+                  href="https://instagram.com/counselordeepa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition"
+                >
+                  @counselordeepa
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
@@ -107,7 +122,7 @@ export default function Footer() {
             </ul>
             <div className="pt-2">
               <div className="p-3 rounded-xl bg-[#121915] border border-sage-800 text-xs text-sage-300">
-                Online sessions conducted via encrypted Google Meet worldwide.
+                Your journey to healing starts here &bull; 100% online video sessions.
               </div>
             </div>
           </div>

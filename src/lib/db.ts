@@ -8,11 +8,11 @@ const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
 
 const DEFAULT_SETTINGS: DoctorSettings = {
   doctorName: "Deepa Kanwaar",
-  title: "Consulting Psychologist (M.A., RCI Reg.)",
+  title: "Counselling Psychologist & Allied Health Provider",
   sessionFee: 2100,
   upiId: "deepakanwaar.therapy@oksbi",
-  whatsappNumber: "+919876543210",
-  clinicAddress: "Suite 402, Serene Mind Wellness Clinic, Park Street, New Delhi",
+  whatsappNumber: "+919877408869",
+  clinicAddress: "Purely Online Consultations (Google Meet Worldwide)",
   workingDays: [1, 2, 3, 4, 5, 6], // Mon - Sat
   availableSlots: [
     "10:00 AM - 11:00 AM",
@@ -49,7 +49,7 @@ const INITIAL_APPOINTMENTS: Appointment[] = [
     clientEmail: "rahul.verma@example.com",
     clientPhone: "+91 99876 54321",
     sessionType: "Relationship & Couples Counseling",
-    format: "in_person",
+    format: "online",
     date: new Date(Date.now() + 86400000 * 2).toISOString().split("T")[0],
     timeSlot: "05:00 PM - 06:00 PM",
     concerns: "Looking for premarital guidance to improve emotional communication.",
@@ -57,7 +57,8 @@ const INITIAL_APPOINTMENTS: Appointment[] = [
     paymentMethod: "pay_later",
     paymentStatus: "pending_verification",
     bookingStatus: "pending",
-    adminNotes: "In-person visit. Sent clinic directions via WhatsApp.",
+    meetingLink: "https://meet.google.com/dkm-cpl-pre",
+    adminNotes: "Online session via Google Meet. Sent meet link via WhatsApp.",
     createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
   },
 ];

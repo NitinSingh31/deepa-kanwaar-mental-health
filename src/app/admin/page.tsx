@@ -592,7 +592,7 @@ export default function AdminPage() {
                 <div className="p-3 bg-linen-50 rounded-xl border border-sage-100">
                   <span className="text-sage-500 block mb-1">Mode &amp; Fee</span>
                   <span className="font-bold text-sage-900">
-                    {selectedAppt.format === "online" ? "Online Video" : "In-Person Clinic"} &bull; ₹{selectedAppt.fee || 2100}
+                    Online Video (Google Meet) &bull; ₹{selectedAppt.fee || 2100}
                   </span>
                 </div>
               </div>

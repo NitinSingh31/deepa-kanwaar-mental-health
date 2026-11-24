@@ -30,7 +30,7 @@ interface BookingModalProps {
 export default function BookingModal({
   isOpen,
   onClose,
-  preselectedService = "Individual Psychotherapy",
+  preselectedService = "Psychotherapy",
   isFreeConsultationDefault = false,
 }: BookingModalProps) {
   // Step state: 1 = Details & Date/Time, 2 = Intake Info, 3 = Payment Method, 4 = Confirmation
@@ -297,46 +297,19 @@ export default function BookingModal({
             </div>
 
             {/* Format Selection */}
+            {/* Session Format: 100% Online Reassurance */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-2">
-                Session Format
+                Session Mode
               </label>
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setFormat("online")}
-                  className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition ${
-                    format === "online"
-                      ? "border-terracotta-500 bg-terracotta-50/50 text-sage-900 ring-2 ring-terracotta-500/20"
-                      : "border-sage-200 hover:bg-linen-50 text-sage-700"
-                  }`}
-                >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${format === "online" ? "bg-terracotta-500 text-white" : "bg-sage-100 text-sage-700"}`}>
-                    <Video className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold">Online Video Call</div>
-                    <div className="text-[11px] text-sage-600">Google Meet (Encrypted)</div>
-                  </div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setFormat("in_person")}
-                  className={`p-3.5 rounded-2xl border text-left flex items-center gap-3 transition ${
-                    format === "in_person"
-                      ? "border-terracotta-500 bg-terracotta-50/50 text-sage-900 ring-2 ring-terracotta-500/20"
-                      : "border-sage-200 hover:bg-linen-50 text-sage-700"
-                  }`}
-                >
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${format === "in_person" ? "bg-terracotta-500 text-white" : "bg-sage-100 text-sage-700"}`}>
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold">In-Person Clinic</div>
-                    <div className="text-[11px] text-sage-600">New Delhi Clinic Suite</div>
-                  </div>
-                </button>
+              <div className="p-3.5 rounded-2xl border border-sage-200 bg-white flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-terracotta-500 text-white flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <Video className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-sage-900">100% Online Consultation (Google Meet)</div>
+                  <div className="text-[11px] text-sage-600">Encrypted video session &bull; Available across India &amp; Worldwide</div>
+                </div>
               </div>
             </div>
 
@@ -350,12 +323,12 @@ export default function BookingModal({
                 onChange={(e) => setSessionType(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:outline-hidden focus:ring-2 focus:ring-terracotta-500/30"
               >
-                <option value="Individual Psychotherapy">Individual Psychotherapy (Anxiety / Stress)</option>
-                <option value="Depression & Mood Healing">Depression &amp; Mood Healing</option>
-                <option value="Relationship & Couples Counseling">Relationship &amp; Couples Counseling</option>
-                <option value="Work-Life Burnout & Executive Stress">Work-Life Burnout &amp; Executive Stress</option>
-                <option value="Trauma, Grief & Inner Child Healing">Trauma, Grief &amp; Inner Child Healing</option>
-                <option value="Personal Growth & Self-Worth">Personal Growth &amp; Self-Worth</option>
+                <option value="Psychotherapy">Psychotherapy (Anxiety, Depression, Mood Distress)</option>
+                <option value="Relaxation Techniques">Relaxation Techniques (Breathwork, Somatic Regulation)</option>
+                <option value="Group Therapy">Group Therapy (Shared Peer Support Circles)</option>
+                <option value="Individual and Couple Counselling">Individual and Couple Counselling</option>
+                <option value="De-addiction Counselling">De-addiction Counselling (Habit &amp; Relapse Support)</option>
+                <option value="Sexual Abuse Counselling">Sexual Abuse Counselling (Trauma-Informed Safe Space)</option>
               </select>
             </div>
 
@@ -512,7 +485,7 @@ export default function BookingModal({
               <input
                 type="tel"
                 required
-                placeholder="+91 98765 43210"
+                placeholder="+91 98774 08869"
                 value={clientPhone}
                 onChange={(e) => setClientPhone(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:ring-2 focus:ring-terracotta-500/30 focus:outline-hidden"
@@ -535,7 +508,7 @@ export default function BookingModal({
             {/* Booking Summary strip */}
             <div className="bg-linen-100 rounded-xl p-3 border border-sage-200/80 flex items-center justify-between text-xs text-sage-700">
               <div>
-                <span className="font-semibold text-sage-900">{format === "online" ? "Online Video" : "In-Person Clinic"}</span> &bull; {selectedDate}
+                <span className="font-semibold text-sage-900">Online Video (Google Meet)</span> &bull; {selectedDate}
               </div>
               <div className="font-bold text-sage-900">{selectedSlot}</div>
             </div>
@@ -805,7 +778,7 @@ export default function BookingModal({
               <div className="flex justify-between text-xs">
                 <span className="text-sage-600">Format:</span>
                 <span className="font-semibold text-sage-900">
-                  {confirmedBooking.format === "online" ? "Online Video (Google Meet)" : "In-Person Clinic"}
+                  Online Video (Google Meet)
                 </span>
               </div>
               <div className="flex justify-between text-xs pt-2 border-t border-sage-200">
@@ -861,7 +834,7 @@ export default function BookingModal({
             {/* Quick WhatsApp Action */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <a
-                href={`https://wa.me/919876543210?text=Hello%20Deepa,%20I%20have%20booked%20session%20${confirmedBooking.id}%20for%20${confirmedBooking.date}%20at%20${confirmedBooking.timeSlot}.`}
+                href={`https://wa.me/919877408869?text=Hello%20Deepa,%20I%20have%20booked%20session%20${confirmedBooking.id}%20for%20${confirmedBooking.date}%20at%20${confirmedBooking.timeSlot}.`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-xs"

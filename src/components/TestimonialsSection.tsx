@@ -14,7 +14,7 @@ const TESTIMONIALS = [
   },
   {
     name: "S. & A. Kapoor",
-    location: "New Delhi (Couples Therapy)",
+    location: "Online Video (Couples Counseling)",
     concern: "Relationship Communication",
     review:
       "We felt heard without any bias. Deepa helped us break down years of defensive patterns and taught us how to talk to each other without spiraling into conflict. We are deeply grateful.",

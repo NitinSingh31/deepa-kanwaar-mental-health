@@ -5,12 +5,14 @@ import {
   Brain, 
   HeartHandshake, 
   Sparkles, 
-  Activity, 
+  Users,
+  ShieldAlert,
+  ShieldCheck,
   Compass, 
-  Flame, 
   ArrowRight,
   CheckCircle2,
-  X
+  X,
+  Phone
 } from "lucide-react";
 
 interface ServiceItem {
@@ -27,106 +29,106 @@ interface ServiceItem {
 
 const SERVICES: ServiceItem[] = [
   {
-    id: "anxiety",
-    title: "Anxiety & Panic Management",
-    subtitle: "Reclaim your inner calm",
-    tagline: "Break free from constant worry and racing thoughts",
-    icon: Activity,
-    accentColor: "bg-sage-100 text-sage-700 border-sage-200",
-    description:
-      "Struggling with chronic worry, restlessness, panic attacks, or social anxiety? We utilize Cognitive Behavioral Therapy (CBT) and somatic grounding techniques to help you rewire distress pathways and regain confidence.",
-    keyAreas: [
-      "Generalized Anxiety Disorder (GAD)",
-      "Panic Attacks & Health Anxiety",
-      "Social Anxiety & Performance Fears",
-      "Obsessive thoughts and overthinking",
-    ],
-    approach: "CBT, Exposure Response Prevention, and Nervous System Regulation.",
-  },
-  {
-    id: "depression",
-    title: "Depression & Mood Healing",
-    subtitle: "Rediscover meaning & hope",
-    tagline: "Gentle, compassionate support when everything feels heavy",
+    id: "psychotherapy",
+    title: "Psychotherapy",
+    subtitle: "Comprehensive mental health care",
+    tagline: "Evidence-based therapy for anxiety, depression, mood distress, and emotional balance",
     icon: Brain,
-    accentColor: "bg-terracotta-100 text-terracotta-700 border-terracotta-200",
-    description:
-      "When fatigue, numbness, and hopelessness cloud your days, therapy provides a safe sanctuary to unpack grief, emotional numbness, and depressive episodes without fear of judgment.",
-    keyAreas: [
-      "Persistent low mood & lack of motivation",
-      "Post-loss grief and emotional numbness",
-      "Major depressive episodes & sadness",
-      "Navigating isolation and life transitions",
-    ],
-    approach: "Behavioral Activation, Mindful Acceptance, and Compassion-Focused Therapy.",
-  },
-  {
-    id: "couples",
-    title: "Relationship & Couples Counseling",
-    subtitle: "Foster authentic connection",
-    tagline: "Bridge emotional disconnects and rebuild mutual trust",
-    icon: HeartHandshake,
-    accentColor: "bg-ochre-100 text-ochre-700 border-ochre-200",
-    description:
-      "Whether addressing recurring arguments, emotional distance, infidelity recovery, or premarital alignment, we create a neutral, respectful space for healthy communication and intimacy.",
-    keyAreas: [
-      "Communication breakdowns & circular arguments",
-      "Premarital counseling & alignment of values",
-      "Rebuilding trust, safety, and emotional bond",
-      "Navigating separation or difficult boundaries",
-    ],
-    approach: "Emotionally Focused Therapy (EFT) and Gottman Method frameworks.",
-  },
-  {
-    id: "burnout",
-    title: "Work-Life Burnout & Executive Stress",
-    subtitle: "Restore energy & healthy boundaries",
-    tagline: "Navigate corporate pressure without sacrificing your health",
-    icon: Flame,
     accentColor: "bg-sage-100 text-sage-800 border-sage-200",
     description:
-      "High performance should not cost your mental stability. Learn how to set firm professional boundaries, manage imposter syndrome, and recover from severe corporate exhaustion.",
+      "Psychotherapy provides a confidential sanctuary to address persistent emotional distress, chronic anxiety, depression, panic, and overwhelming life challenges. Drawing on 20+ years of clinical insight, we collaboratively unpack root triggers and establish lasting coping strategies.",
     keyAreas: [
-      "Chronic workplace exhaustion & fatigue",
-      "Boundary setting with colleagues & managers",
-      "Imposter syndrome & perfectionism traps",
-      "Career crossroads and decision anxiety",
+      "Generalized Anxiety, Panic & Overthinking",
+      "Depression, Mood Swings & Loss of Motivation",
+      "Emotional Dysregulation & Burnout",
+      "Cognitive Restructuring & Behavioral Grounding",
     ],
-    approach: "Acceptance & Commitment Therapy (ACT) and Stress Inoculation.",
+    approach: "Cognitive Behavioral Therapy (CBT), Psychodynamic & Humanistic Modalities.",
   },
   {
-    id: "trauma",
-    title: "Trauma, Grief & Inner Child Healing",
-    subtitle: "Unpack past wounds gently",
-    tagline: "Heal deeply held emotional pain at your own pace",
+    id: "relaxation",
+    title: "Relaxation Techniques",
+    subtitle: "Somatic calm & nervous system regulation",
+    tagline: "Guided somatic practices, deep breathwork, and progressive stress alleviation",
     icon: Sparkles,
     accentColor: "bg-terracotta-100 text-terracotta-800 border-terracotta-200",
     description:
-      "Past experiences often cast long shadows over present choices. Through gentle pacing and trauma-informed guidance, we process unresolved memories so you can feel whole again.",
+      "When psychological tension expresses itself physically—as tight chests, shallow breathing, sleep disturbances, or restless tension—relaxation therapies help restore autonomic balance and calm an overstimulated nervous system.",
     keyAreas: [
-      "Childhood emotional neglect or trauma",
-      "Loss of loved ones, sudden life shifts",
-      "Inner critic resolution and self-forgiveness",
-      "Developing emotional resilience and safety",
+      "Guided Diaphragmatic Breathwork & Vagus Nerve Soothing",
+      "Progressive Muscle Relaxation (PMR)",
+      "Mindfulness Grounding for Acute Panic & Stress",
+      "Sleep Hygiene & Restorative Evening Routines",
     ],
-    approach: "Trauma-Informed Psychotherapy and Somatic Grounding.",
+    approach: "Mindfulness-Based Stress Reduction (MBSR), Somatic Grounding, and Autogenic Relaxation.",
   },
   {
-    id: "growth",
-    title: "Personal Growth & Self-Worth",
-    subtitle: "Step into your authentic self",
-    tagline: "Cultivate self-worth, assertiveness, and emotional clarity",
-    icon: Compass,
+    id: "group-therapy",
+    title: "Group Therapy",
+    subtitle: "Shared healing & collective resilience",
+    tagline: "Safe, facilitated group circles to break isolation and build emotional strength together",
+    icon: Users,
     accentColor: "bg-ochre-100 text-ochre-800 border-ochre-200",
     description:
-      "Therapy isn't only for crisis; it is also a powerful mirror for self-discovery, strengthening self-trust, overcoming people-pleasing, and charting a purposeful life.",
+      "Healing does not have to be a lonely pursuit. Guided by Deepa Kanwaar, small-group sessions create an empowering, non-judgmental space to share experiences, gain fresh perspectives, and discover that you are never truly alone.",
     keyAreas: [
-      "Overcoming chronic people-pleasing habits",
-      "Building healthy self-esteem & body image",
-      "Clarifying personal values & identity",
-      "Navigating major 20s/30s/40s life transitions",
+      "Safe, Facilitated Peer Reflection & Validation",
+      "Breaking Loneliness, Social Alienation & Guilt",
+      "Collective Emotional Coping & Resilience Circles",
+      "Interpersonal Communication & Empathy Practice",
     ],
-    approach: "Humanistic, Person-Centered Psychotherapy.",
+    approach: "Facilitated Group Process, Interpersonal Learning, and Psychoeducation.",
+  },
+  {
+    id: "individual-couple",
+    title: "Individual and Couple Counselling",
+    subtitle: "Deepening connection & personal growth",
+    tagline: "Navigating relationship friction, premarital clarity, communication barriers, and self-worth",
+    icon: HeartHandshake,
+    accentColor: "bg-sage-100 text-sage-800 border-sage-200",
+    description:
+      "Whether exploring your own personal identity or navigating recurring friction with your partner, this counseling helps decode defensive loops, rebuild trust, foster respectful communication, and align on mutual values.",
+    keyAreas: [
+      "Communication Breakdowns & Circular Conflicts",
+      "Premarital Guidance & Value Alignment",
+      "Rebuilding Trust, Intimacy & Emotional Safety",
+      "Self-Worth, Boundaries & Personal Autonomy",
+    ],
+    approach: "Emotionally Focused Therapy (EFT), Gottman Frameworks, and Person-Centered Counseling.",
+  },
+  {
+    id: "de-addiction",
+    title: "De-addiction Counselling",
+    subtitle: "Compassionate recovery & habit transformation",
+    tagline: "Structured psychological guidance for overcoming substance dependencies and behavioral habits",
+    icon: ShieldAlert,
+    accentColor: "bg-terracotta-100 text-terracotta-800 border-terracotta-200",
+    description:
+      "Addiction is deeply tied to emotional pain, stress, and behavioral triggers. Deepa provides an empathetic, non-shaming space to identify compulsive patterns, de-escalate cravings, and design sustainable relapse prevention plans.",
+    keyAreas: [
+      "Substance & Alcohol Dependency Support",
+      "Behavioral Addictions (Gaming, Digital, Compulsions)",
+      "Identifying Emotional Triggers & Urge Surfing",
+      "Relapse Prevention Strategies & Accountability Support",
+    ],
+    approach: "Motivational Interviewing, Relapse Prevention Therapy (RPT), and Cognitive Behavioral Conditioning.",
+  },
+  {
+    id: "sexual-abuse",
+    title: "Sexual Abuse Counselling",
+    subtitle: "Trauma-informed, confidential safe space",
+    tagline: "Compassionate healing and safe emotional processing for survivors of sexual abuse and assault",
+    icon: ShieldCheck,
+    accentColor: "bg-ochre-100 text-ochre-800 border-ochre-200",
+    description:
+      "Surviving sexual abuse carries profound emotional weight. In this deeply confidential, pacing-controlled environment, survivors are supported with utmost dignity to reclaim emotional safety, work through trauma responses, and rebuild self-worth.",
+    keyAreas: [
+      "Trauma-Informed Safe Processing at Your Own Pace",
+      "Reclaiming Bodily Autonomy, Safety & Personal Dignity",
+      "Untangling Guilt, Shame, Flashbacks & Hypervigilance",
+      "100% Confidential, Strictly Protected Care",
+    ],
+    approach: "Trauma-Informed Psychotherapy, Compassion-Focused Care, and Somatic De-escalation.",
   },
 ];
 
@@ -143,14 +145,14 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold uppercase tracking-wider">
-            Clinical Specializations &bull; Skills
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-semibold uppercase tracking-wider">
+            Compassionate Care for Your Well-being
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-sage-900">
-            Tailored Counseling for Life&apos;s Complexities
+            Working with All Kinds of Mental Health Issues
           </h2>
           <p className="text-base sm:text-lg text-sage-700 leading-relaxed">
-            Every mind is unique. Sessions are crafted around your personal narrative, drawing on proven, scientifically verified psychological modalities.
+            With <strong>20+ years of dedicated clinical experience</strong>, Deepa Kanwaar provides empathetic, scientifically grounded psychological counseling across six specialized pillars—conducted 100% online with absolute confidentiality.
           </p>
         </div>
 
@@ -170,7 +172,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
                       <Icon className="w-7 h-7" />
                     </div>
                     <span className="text-xs font-semibold tracking-wider text-sage-600 uppercase bg-white px-3 py-1 rounded-full border border-sage-100">
-                      60 Min Session
+                      60 Min &bull; Online
                     </span>
                   </div>
 
@@ -219,7 +221,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
           })}
         </div>
 
-        {/* Global / NRI Note */}
+        {/* Global / Purely Online Banner */}
         <div className="mt-12 bg-linen-100 rounded-2xl p-6 border border-sage-200/80 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4 text-center md:text-left">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0 text-sage-700 shadow-xs">
@@ -227,19 +229,30 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             </div>
             <div>
               <h4 className="font-serif text-base font-bold text-sage-900">
-                Online Therapy Across India &amp; Global (NRI Support)
+                100% Online Counseling &bull; Pan-India &amp; Global NRI Support
               </h4>
               <p className="text-xs sm:text-sm text-sage-700">
-                Sessions offered via secure Google Meet / Zoom with flexible scheduling across international time zones (US, UK, UAE, Australia).
+                All consultations are conducted via encrypted Google Meet links. Attend from the comfort and privacy of your home anywhere in India or across international time zones.
               </p>
             </div>
           </div>
-          <button
-            onClick={() => onSelectService("General Consultation")}
-            className="flex-shrink-0 bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
-          >
-            Schedule Online Session
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://wa.me/919877408869?text=Hello%20Deepa%20Kanwaar,%20I%20would%20like%20to%20inquire%20about%20your%20services."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
+            >
+              <Phone className="w-4 h-4" />
+              <span>WhatsApp: 9877408869</span>
+            </a>
+            <button
+              onClick={() => onSelectService("Psychotherapy")}
+              className="flex-shrink-0 bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition"
+            >
+              Schedule Online
+            </button>
+          </div>
         </div>
 
       </div>
@@ -257,7 +270,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
 
             <div className="mb-4">
               <span className="text-xs font-semibold text-terracotta-600 uppercase tracking-wider">
-                Clinical Focus
+                Specialized Service Focus
               </span>
               <h3 className="font-serif text-2xl font-bold text-sage-900 mt-1">
                 {activeModal.title}
@@ -271,7 +284,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             <div className="space-y-4 mb-6">
               <div>
                 <h5 className="text-xs font-bold uppercase tracking-wider text-sage-800 mb-2">
-                  Key Symptoms &amp; Issues Addressed:
+                  Key Areas Addressed:
                 </h5>
                 <ul className="space-y-1.5">
                   {activeModal.keyAreas.map((item, idx) => (
@@ -295,7 +308,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
 
             <div className="flex items-center justify-between pt-4 border-t border-sage-100">
               <div className="text-xs text-sage-700">
-                <span className="font-bold text-base text-sage-900">₹2,100</span> / 60 minutes
+                <span className="font-bold text-base text-sage-900">₹2,100</span> / 60 minutes (100% Online)
               </div>
               <button
                 onClick={() => {

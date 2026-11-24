@@ -71,7 +71,7 @@ const QUESTIONS: Question[] = [
   },
   {
     id: 3,
-    question: "Have you ever spoken with a licensed psychologist before?",
+    question: "Have you ever spoken with a professional counselor or psychologist before?",
     subtitle: "Helps Deepa tailor her communication to your familiarity.",
     options: [
       {
