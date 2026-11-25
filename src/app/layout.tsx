@@ -21,9 +21,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Deepa Kanwaar Mental Health | Counselling Psychologist & Allied Health Provider",
+  metadataBase: new URL("https://psychologistdeepa.com"),
+  title: "Deepa Kanwaar | Counselling Psychologist & Allied Health Provider",
   description:
     "Transformative online psychological counseling and guidance. Psychotherapy, relaxation techniques, group therapy, couple counselling, and de-addiction support with 20+ years clinical experience.",
+  openGraph: {
+    title: "Deepa Kanwaar | Counselling Psychologist & Allied Health Provider",
+    description:
+      "Transformative online psychological counseling and guidance with 20+ years clinical practice.",
+    url: "https://psychologistdeepa.com",
+    siteName: "Deepa Kanwaar Mental Health",
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
     icon: "/images/logo-icon.png",
   },
