@@ -211,15 +211,16 @@ export default function AdminPage() {
                 <input
                   type="password"
                   required
-                  placeholder="Enter passcode (default: deepa2026)"
+                  placeholder="Enter your private passcode"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:outline-hidden focus:ring-2 focus:ring-terracotta-500/30"
                 />
                 <Lock className="w-4 h-4 text-sage-400 absolute right-3.5 top-3.5" />
               </div>
-              <p className="text-[11px] text-sage-500 mt-1.5 italic">
-                Default access code: <code className="bg-linen-100 px-1 py-0.5 rounded text-terracotta-600 font-bold">deepa2026</code>
+              <p className="text-[11px] text-sage-500 mt-1.5 flex items-center gap-1.5">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>Restricted private portal for Deepa Kanwaar</span>
               </p>
             </div>
 
