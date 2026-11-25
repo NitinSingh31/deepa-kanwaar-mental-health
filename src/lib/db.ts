@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { eq, desc, and, ne } from "drizzle-orm";
-import { db, isDatabaseConfigured } from "@/db";
+import { getDb } from "@/db";
 import { appointments as appointmentsTable, clinicSettings as clinicSettingsTable } from "@/db/schema";
 import { Appointment, DoctorSettings, SessionFormat, PaymentMethod, PaymentStatus, BookingStatus } from "./types";
 
@@ -36,7 +36,8 @@ function ensureDataDir() {
 // =================== SETTINGS ===================
 
 export async function getSettings(): Promise<DoctorSettings> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       const rows = await db
         .select()
@@ -91,7 +92,8 @@ export async function getSettings(): Promise<DoctorSettings> {
 }
 
 export async function updateSettings(newSettings: Partial<DoctorSettings>): Promise<DoctorSettings> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       await db
         .update(clinicSettingsTable)
@@ -116,7 +118,8 @@ export async function updateSettings(newSettings: Partial<DoctorSettings>): Prom
 // =================== APPOINTMENTS ===================
 
 export async function getAppointments(): Promise<Appointment[]> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       const rows = await db
         .select()
@@ -161,7 +164,8 @@ export async function getAppointments(): Promise<Appointment[]> {
 }
 
 export async function saveAppointment(appointment: Appointment): Promise<Appointment> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       const existing = await db
         .select()
@@ -233,7 +237,8 @@ export async function saveAppointment(appointment: Appointment): Promise<Appoint
 }
 
 export async function updateAppointment(id: string, updates: Partial<Appointment>): Promise<Appointment | null> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       const dbUpdates: Record<string, any> = { updatedAt: new Date() };
       if (updates.clientName !== undefined) dbUpdates.clientName = updates.clientName;
@@ -300,7 +305,8 @@ export async function updateAppointment(id: string, updates: Partial<Appointment
 }
 
 export async function deleteAppointment(id: string): Promise<boolean> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       await db
         .delete(appointmentsTable)
@@ -322,7 +328,8 @@ export async function deleteAppointment(id: string): Promise<boolean> {
 }
 
 export async function getBookedSlotsForDate(dateStr: string): Promise<string[]> {
-  if (isDatabaseConfigured && db) {
+  const db = getDb();
+  if (db) {
     try {
       const rows = await db
         .select({ timeSlot: appointmentsTable.timeSlot })
