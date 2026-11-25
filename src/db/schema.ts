@@ -37,6 +37,7 @@ export const clinicSettings = pgTable("clinic_settings", {
     "05:00 PM - 06:00 PM",
     "06:30 PM - 07:30 PM",
   ]),
+  adminPasswordHash: text("admin_password_hash"),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 

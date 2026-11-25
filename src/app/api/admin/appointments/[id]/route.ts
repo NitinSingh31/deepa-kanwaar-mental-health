@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateAppointment, deleteAppointment } from "@/lib/db";
+import { verifyAdminRequest } from "@/lib/auth";
 
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!verifyAdminRequest(request)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await params;
     const body = await request.json();
     const updated = await updateAppointment(id, body);
@@ -26,6 +30,9 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    if (!verifyAdminRequest(request)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
     const { id } = await params;
     const success = await deleteAppointment(id);
 

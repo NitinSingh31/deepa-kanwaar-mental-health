@@ -26,7 +26,8 @@ import {
   MessageCircle,
   LogOut,
   Sliders,
-  DollarSign
+  DollarSign,
+  KeyRound
 } from "lucide-react";
 import { Appointment } from "@/lib/types";
 
@@ -45,19 +46,43 @@ export default function AdminPage() {
   // Selected appointment for detail drawer/modal
   const [selectedAppt, setSelectedAppt] = useState<Appointment | null>(null);
 
+  // Password reset/change states
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [currentPass, setCurrentPass] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordSuccess, setPasswordSuccess] = useState("");
+  const [changingPassword, setChangingPassword] = useState(false);
+
+  // Auth headers helper
+  const getAuthHeaders = () => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("dkm_admin_auth") || "" : "";
+    return {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+  };
+
   // Check existing session
   useEffect(() => {
     const saved = localStorage.getItem("dkm_admin_auth");
-    if (saved === "dkm-auth-token-verified") {
+    if (saved && saved.length > 10) {
       setIsAuthenticated(true);
     }
   }, []);
 
-  // Fetch appointments
+  // Fetch appointments with auth
   const fetchAppointments = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/appointments");
+      const res = await fetch("/api/appointments", {
+        headers: getAuthHeaders(),
+      });
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
       const data = await res.json();
       if (data.appointments) {
         setAppointments(data.appointments);
@@ -137,9 +162,13 @@ export default function AdminPage() {
     try {
       const res = await fetch(`/api/admin/appointments/${id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: getAuthHeaders(),
         body: JSON.stringify(updates),
       });
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
       if (res.ok) {
         setAppointments((prev) =>
           prev.map((a) => (a.id === id ? { ...a, ...updates } : a))
@@ -158,13 +187,67 @@ export default function AdminPage() {
     try {
       const res = await fetch(`/api/admin/appointments/${id}`, {
         method: "DELETE",
+        headers: getAuthHeaders(),
       });
+      if (res.status === 401) {
+        handleLogout();
+        return;
+      }
       if (res.ok) {
         setAppointments((prev) => prev.filter((a) => a.id !== id));
         if (selectedAppt?.id === id) setSelectedAppt(null);
       }
     } catch (err) {
       console.error("Delete failed", err);
+    }
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordError("");
+    setPasswordSuccess("");
+
+    if (newPass.length < 6) {
+      setPasswordError("New passcode must be at least 6 characters long.");
+      return;
+    }
+
+    if (newPass !== confirmPass) {
+      setPasswordError("New passcodes do not match. Please re-type.");
+      return;
+    }
+
+    setChangingPassword(true);
+    try {
+      const res = await fetch("/api/admin/change-password", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({
+          currentPassword: currentPass,
+          newPassword: newPass,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setPasswordSuccess(data.message || "Passcode updated successfully!");
+        if (data.token) {
+          localStorage.setItem("dkm_admin_auth", data.token);
+        }
+        setCurrentPass("");
+        setNewPass("");
+        setConfirmPass("");
+        setTimeout(() => {
+          setShowPasswordModal(false);
+          setPasswordSuccess("");
+        }, 2200);
+      } else {
+        setPasswordError(data.error || "Failed to update passcode.");
+      }
+    } catch {
+      setPasswordError("Network error while updating passcode.");
+    } finally {
+      setChangingPassword(false);
     }
   };
 
@@ -287,6 +370,22 @@ export default function AdminPage() {
               title="Refresh"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+            </button>
+
+            <button
+              onClick={() => {
+                setShowPasswordModal(true);
+                setPasswordSuccess("");
+                setPasswordError("");
+                setCurrentPass("");
+                setNewPass("");
+                setConfirmPass("");
+              }}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-sage-700 hover:text-sage-900 bg-linen-100 hover:bg-sage-100 border border-sage-200 px-3 py-1.5 rounded-lg transition"
+              title="Change Admin Passcode"
+            >
+              <KeyRound className="w-3.5 h-3.5 text-terracotta-500" />
+              <span>Change Passcode</span>
             </button>
 
             <button
@@ -646,6 +745,112 @@ export default function AdminPage() {
                 Close
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Change Passcode Modal */}
+      {showPasswordModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-sage-950/40 backdrop-blur-xs">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-sage-200">
+            <div className="flex items-center justify-between pb-4 border-b border-sage-100 mb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-full bg-terracotta-50 border border-terracotta-100 flex items-center justify-center text-terracotta-600">
+                  <KeyRound className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className="font-serif font-bold text-lg text-sage-900">
+                    Change Doctor Passcode
+                  </h3>
+                  <p className="text-[11px] text-sage-500">
+                    Update your private access code for this admin dashboard.
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowPasswordModal(false)}
+                className="p-1 rounded-full text-sage-400 hover:text-sage-700 hover:bg-sage-100 transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {passwordError && (
+              <div className="p-3 mb-4 rounded-xl bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <span>{passwordError}</span>
+              </div>
+            )}
+
+            {passwordSuccess && (
+              <div className="p-3 mb-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 flex-shrink-0 text-emerald-600" />
+                <span>{passwordSuccess}</span>
+              </div>
+            )}
+
+            <form onSubmit={handleChangePassword} className="space-y-3.5">
+              <div>
+                <label className="block text-xs font-bold text-sage-700 mb-1">
+                  Current Passcode
+                </label>
+                <input
+                  type="password"
+                  required
+                  placeholder="Enter current passcode"
+                  value={currentPass}
+                  onChange={(e) => setCurrentPass(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:outline-hidden focus:ring-2 focus:ring-terracotta-500/30"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-sage-700 mb-1">
+                  New Passcode
+                </label>
+                <input
+                  type="password"
+                  required
+                  minLength={6}
+                  placeholder="At least 6 characters"
+                  value={newPass}
+                  onChange={(e) => setNewPass(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:outline-hidden focus:ring-2 focus:ring-terracotta-500/30"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-sage-700 mb-1">
+                  Confirm New Passcode
+                </label>
+                <input
+                  type="password"
+                  required
+                  minLength={6}
+                  placeholder="Re-enter new passcode"
+                  value={confirmPass}
+                  onChange={(e) => setConfirmPass(e.target.value)}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:outline-hidden focus:ring-2 focus:ring-terracotta-500/30"
+                />
+              </div>
+
+              <div className="pt-3 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowPasswordModal(false)}
+                  className="px-4 py-2 rounded-full text-xs font-semibold text-sage-600 hover:text-sage-900 bg-sage-100 hover:bg-sage-200 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={changingPassword}
+                  className="bg-terracotta-500 hover:bg-terracotta-600 text-white px-5 py-2 rounded-full font-semibold text-xs transition shadow-sm disabled:opacity-50"
+                >
+                  {changingPassword ? "Updating..." : "Update Passcode"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

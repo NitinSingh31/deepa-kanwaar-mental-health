@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAppointments, saveAppointment, getBookedSlotsForDate, getSettings } from "@/lib/db";
 import { Appointment } from "@/lib/types";
+import { verifyAdminRequest } from "@/lib/auth";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    if (!verifyAdminRequest(request)) {
+      return NextResponse.json({ error: "Unauthorized access to patient records" }, { status: 401 });
+    }
     const appointments = await getAppointments();
     return NextResponse.json({ appointments });
   } catch (error) {

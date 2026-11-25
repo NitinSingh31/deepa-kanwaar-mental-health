@@ -115,6 +115,67 @@ export async function updateSettings(newSettings: Partial<DoctorSettings>): Prom
   return updated;
 }
 
+export async function getAdminPasswordHash(): Promise<string | null> {
+  const db = getDb();
+  if (db) {
+    try {
+      const rows = await db
+        .select({ hash: clinicSettingsTable.adminPasswordHash })
+        .from(clinicSettingsTable)
+        .where(eq(clinicSettingsTable.id, 1))
+        .limit(1);
+      if (rows.length > 0 && rows[0].hash) {
+        return rows[0].hash;
+      }
+    } catch (err) {
+      console.warn("Neon DB getAdminPasswordHash failed:", err);
+    }
+  }
+
+  // Fallback to local settings file
+  ensureDataDir();
+  if (fs.existsSync(SETTINGS_FILE)) {
+    try {
+      const raw = fs.readFileSync(SETTINGS_FILE, "utf8");
+      const data = JSON.parse(raw);
+      return data.adminPasswordHash || null;
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+export async function saveAdminPasswordHash(hash: string): Promise<boolean> {
+  const db = getDb();
+  if (db) {
+    try {
+      await db
+        .update(clinicSettingsTable)
+        .set({
+          adminPasswordHash: hash,
+          updatedAt: new Date(),
+        })
+        .where(eq(clinicSettingsTable.id, 1));
+      return true;
+    } catch (err) {
+      console.warn("Neon DB saveAdminPasswordHash failed:", err);
+    }
+  }
+
+  // Fallback to local settings file
+  ensureDataDir();
+  try {
+    const raw = fs.existsSync(SETTINGS_FILE) ? fs.readFileSync(SETTINGS_FILE, "utf8") : "{}";
+    const data = JSON.parse(raw);
+    data.adminPasswordHash = hash;
+    fs.writeFileSync(SETTINGS_FILE, JSON.stringify(data, null, 2), "utf8");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // =================== APPOINTMENTS ===================
 
 export async function getAppointments(): Promise<Appointment[]> {
