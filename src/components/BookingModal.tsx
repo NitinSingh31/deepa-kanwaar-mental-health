@@ -838,7 +838,9 @@ export default function BookingModal({
             {/* Quick WhatsApp Action */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <a
-                href={`https://wa.me/919877408869?text=Hello%20Deepa,%20I%20have%20booked%20session%20${confirmedBooking.id}%20for%20${confirmedBooking.date}%20at%20${confirmedBooking.timeSlot}.`}
+                href={`https://wa.me/919877408869?text=${encodeURIComponent(
+                  `Hello Deepa,\n\nI have booked a session on your website:\n• Ref ID: ${confirmedBooking.id}\n• Name: ${confirmedBooking.clientName}\n• Service: ${confirmedBooking.sessionType}\n• Date: ${confirmedBooking.date}\n• Time: ${confirmedBooking.timeSlot}\n• Status: ${confirmedBooking.fee === 0 ? "Free Discovery Call" : `Paid Session (₹${confirmedBooking.fee})`}\n\nPlease confirm my appointment.`
+                )}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white px-6 py-3 rounded-full text-xs sm:text-sm font-semibold transition shadow-xs"
