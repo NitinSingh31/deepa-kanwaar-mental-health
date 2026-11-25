@@ -1,12 +1,15 @@
 import fs from "fs";
 import path from "path";
-import { Appointment, DoctorSettings } from "./types";
+import { eq, desc, and, ne } from "drizzle-orm";
+import { db, isDatabaseConfigured } from "@/db";
+import { appointments as appointmentsTable, clinicSettings as clinicSettingsTable } from "@/db/schema";
+import { Appointment, DoctorSettings, SessionFormat, PaymentMethod, PaymentStatus, BookingStatus } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const APPOINTMENTS_FILE = path.join(DATA_DIR, "appointments.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
 
-const DEFAULT_SETTINGS: DoctorSettings = {
+export const DEFAULT_SETTINGS: DoctorSettings = {
   doctorName: "Deepa Kanwaar",
   title: "Counselling Psychologist & Allied Health Provider",
   sessionFee: 2100,
@@ -24,15 +27,56 @@ const DEFAULT_SETTINGS: DoctorSettings = {
   ],
 };
 
-const INITIAL_APPOINTMENTS: Appointment[] = [];
-
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 }
 
-export function getSettings(): DoctorSettings {
+// =================== SETTINGS ===================
+
+export async function getSettings(): Promise<DoctorSettings> {
+  if (isDatabaseConfigured && db) {
+    try {
+      const rows = await db
+        .select()
+        .from(clinicSettingsTable)
+        .where(eq(clinicSettingsTable.id, 1))
+        .limit(1);
+
+      if (rows.length > 0) {
+        const row = rows[0];
+        return {
+          doctorName: row.doctorName,
+          title: row.title,
+          sessionFee: row.sessionFee,
+          upiId: row.upiId,
+          whatsappNumber: row.whatsappNumber,
+          clinicAddress: row.clinicAddress,
+          workingDays: row.workingDays || DEFAULT_SETTINGS.workingDays,
+          availableSlots: row.availableSlots || DEFAULT_SETTINGS.availableSlots,
+        };
+      } else {
+        // Seed default settings row if table is empty
+        await db.insert(clinicSettingsTable).values({
+          id: 1,
+          doctorName: DEFAULT_SETTINGS.doctorName,
+          title: DEFAULT_SETTINGS.title,
+          sessionFee: DEFAULT_SETTINGS.sessionFee,
+          upiId: DEFAULT_SETTINGS.upiId,
+          whatsappNumber: DEFAULT_SETTINGS.whatsappNumber,
+          clinicAddress: DEFAULT_SETTINGS.clinicAddress,
+          workingDays: DEFAULT_SETTINGS.workingDays,
+          availableSlots: DEFAULT_SETTINGS.availableSlots,
+        });
+        return DEFAULT_SETTINGS;
+      }
+    } catch (err) {
+      console.warn("Neon DB query failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
   ensureDataDir();
   if (!fs.existsSync(SETTINGS_FILE)) {
     fs.writeFileSync(SETTINGS_FILE, JSON.stringify(DEFAULT_SETTINGS, null, 2), "utf8");
@@ -46,19 +90,67 @@ export function getSettings(): DoctorSettings {
   }
 }
 
-export function updateSettings(newSettings: Partial<DoctorSettings>): DoctorSettings {
+export async function updateSettings(newSettings: Partial<DoctorSettings>): Promise<DoctorSettings> {
+  if (isDatabaseConfigured && db) {
+    try {
+      await db
+        .update(clinicSettingsTable)
+        .set({
+          ...newSettings,
+          updatedAt: new Date(),
+        })
+        .where(eq(clinicSettingsTable.id, 1));
+      return await getSettings();
+    } catch (err) {
+      console.warn("Neon DB update failed, falling back to local storage:", err);
+    }
+  }
+
   ensureDataDir();
-  const current = getSettings();
+  const current = await getSettings();
   const updated = { ...current, ...newSettings };
   fs.writeFileSync(SETTINGS_FILE, JSON.stringify(updated, null, 2), "utf8");
   return updated;
 }
 
-export function getAppointments(): Appointment[] {
+// =================== APPOINTMENTS ===================
+
+export async function getAppointments(): Promise<Appointment[]> {
+  if (isDatabaseConfigured && db) {
+    try {
+      const rows = await db
+        .select()
+        .from(appointmentsTable)
+        .orderBy(desc(appointmentsTable.createdAt));
+
+      return rows.map((r) => ({
+        id: r.id,
+        clientName: r.clientName,
+        clientEmail: r.clientEmail || "",
+        clientPhone: r.clientPhone,
+        sessionType: r.sessionType,
+        format: (r.format || "online") as SessionFormat,
+        date: r.date,
+        timeSlot: r.timeSlot,
+        concerns: r.concerns || "",
+        fee: r.fee,
+        paymentMethod: (r.paymentMethod || "online") as PaymentMethod,
+        paymentStatus: (r.paymentStatus || "pending_verification") as PaymentStatus,
+        bookingStatus: (r.bookingStatus || "pending") as BookingStatus,
+        meetingLink: r.meetingLink || undefined,
+        adminNotes: r.adminNotes || undefined,
+        createdAt: r.createdAt ? new Date(r.createdAt).toISOString() : new Date().toISOString(),
+      }));
+    } catch (err) {
+      console.warn("Neon DB getAppointments failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
   ensureDataDir();
   if (!fs.existsSync(APPOINTMENTS_FILE)) {
-    fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify(INITIAL_APPOINTMENTS, null, 2), "utf8");
-    return INITIAL_APPOINTMENTS;
+    fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify([], null, 2), "utf8");
+    return [];
   }
   try {
     const raw = fs.readFileSync(APPOINTMENTS_FILE, "utf8");
@@ -68,9 +160,66 @@ export function getAppointments(): Appointment[] {
   }
 }
 
-export function saveAppointment(appointment: Appointment): Appointment {
+export async function saveAppointment(appointment: Appointment): Promise<Appointment> {
+  if (isDatabaseConfigured && db) {
+    try {
+      const existing = await db
+        .select()
+        .from(appointmentsTable)
+        .where(eq(appointmentsTable.id, appointment.id))
+        .limit(1);
+
+      if (existing.length > 0) {
+        await db
+          .update(appointmentsTable)
+          .set({
+            clientName: appointment.clientName,
+            clientEmail: appointment.clientEmail || "",
+            clientPhone: appointment.clientPhone,
+            sessionType: appointment.sessionType,
+            format: appointment.format,
+            date: appointment.date,
+            timeSlot: appointment.timeSlot,
+            concerns: appointment.concerns || "",
+            fee: appointment.fee,
+            paymentMethod: appointment.paymentMethod,
+            paymentStatus: appointment.paymentStatus,
+            bookingStatus: appointment.bookingStatus,
+            meetingLink: appointment.meetingLink,
+            adminNotes: appointment.adminNotes,
+            updatedAt: new Date(),
+          })
+          .where(eq(appointmentsTable.id, appointment.id));
+      } else {
+        await db.insert(appointmentsTable).values({
+          id: appointment.id,
+          clientName: appointment.clientName,
+          clientEmail: appointment.clientEmail || "",
+          clientPhone: appointment.clientPhone,
+          sessionType: appointment.sessionType,
+          format: appointment.format,
+          date: appointment.date,
+          timeSlot: appointment.timeSlot,
+          concerns: appointment.concerns || "",
+          fee: appointment.fee,
+          paymentMethod: appointment.paymentMethod,
+          paymentStatus: appointment.paymentStatus,
+          bookingStatus: appointment.bookingStatus,
+          meetingLink: appointment.meetingLink,
+          adminNotes: appointment.adminNotes,
+          createdAt: new Date(appointment.createdAt || Date.now()),
+          updatedAt: new Date(),
+        });
+      }
+      return appointment;
+    } catch (err) {
+      console.warn("Neon DB saveAppointment failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
   ensureDataDir();
-  const appointments = getAppointments();
+  const appointments = await getAppointments();
   const existingIndex = appointments.findIndex((a) => a.id === appointment.id);
 
   if (existingIndex >= 0) {
@@ -83,9 +232,65 @@ export function saveAppointment(appointment: Appointment): Appointment {
   return appointment;
 }
 
-export function updateAppointment(id: string, updates: Partial<Appointment>): Appointment | null {
+export async function updateAppointment(id: string, updates: Partial<Appointment>): Promise<Appointment | null> {
+  if (isDatabaseConfigured && db) {
+    try {
+      const dbUpdates: Record<string, any> = { updatedAt: new Date() };
+      if (updates.clientName !== undefined) dbUpdates.clientName = updates.clientName;
+      if (updates.clientEmail !== undefined) dbUpdates.clientEmail = updates.clientEmail;
+      if (updates.clientPhone !== undefined) dbUpdates.clientPhone = updates.clientPhone;
+      if (updates.sessionType !== undefined) dbUpdates.sessionType = updates.sessionType;
+      if (updates.format !== undefined) dbUpdates.format = updates.format;
+      if (updates.date !== undefined) dbUpdates.date = updates.date;
+      if (updates.timeSlot !== undefined) dbUpdates.timeSlot = updates.timeSlot;
+      if (updates.concerns !== undefined) dbUpdates.concerns = updates.concerns;
+      if (updates.fee !== undefined) dbUpdates.fee = updates.fee;
+      if (updates.paymentMethod !== undefined) dbUpdates.paymentMethod = updates.paymentMethod;
+      if (updates.paymentStatus !== undefined) dbUpdates.paymentStatus = updates.paymentStatus;
+      if (updates.bookingStatus !== undefined) dbUpdates.bookingStatus = updates.bookingStatus;
+      if (updates.meetingLink !== undefined) dbUpdates.meetingLink = updates.meetingLink;
+      if (updates.adminNotes !== undefined) dbUpdates.adminNotes = updates.adminNotes;
+
+      await db
+        .update(appointmentsTable)
+        .set(dbUpdates)
+        .where(eq(appointmentsTable.id, id));
+
+      const updatedRows = await db
+        .select()
+        .from(appointmentsTable)
+        .where(eq(appointmentsTable.id, id))
+        .limit(1);
+
+      if (updatedRows.length > 0) {
+        const r = updatedRows[0];
+        return {
+          id: r.id,
+          clientName: r.clientName,
+          clientEmail: r.clientEmail || "",
+          clientPhone: r.clientPhone,
+          sessionType: r.sessionType,
+          format: (r.format || "online") as SessionFormat,
+          date: r.date,
+          timeSlot: r.timeSlot,
+          concerns: r.concerns || "",
+          fee: r.fee,
+          paymentMethod: (r.paymentMethod || "online") as PaymentMethod,
+          paymentStatus: (r.paymentStatus || "pending_verification") as PaymentStatus,
+          bookingStatus: (r.bookingStatus || "pending") as BookingStatus,
+          meetingLink: r.meetingLink || undefined,
+          adminNotes: r.adminNotes || undefined,
+          createdAt: r.createdAt ? new Date(r.createdAt).toISOString() : new Date().toISOString(),
+        };
+      }
+    } catch (err) {
+      console.warn("Neon DB updateAppointment failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
   ensureDataDir();
-  const appointments = getAppointments();
+  const appointments = await getAppointments();
   const index = appointments.findIndex((a) => a.id === id);
   if (index === -1) return null;
 
@@ -94,9 +299,21 @@ export function updateAppointment(id: string, updates: Partial<Appointment>): Ap
   return appointments[index];
 }
 
-export function deleteAppointment(id: string): boolean {
+export async function deleteAppointment(id: string): Promise<boolean> {
+  if (isDatabaseConfigured && db) {
+    try {
+      await db
+        .delete(appointmentsTable)
+        .where(eq(appointmentsTable.id, id));
+      return true;
+    } catch (err) {
+      console.warn("Neon DB deleteAppointment failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
   ensureDataDir();
-  const appointments = getAppointments();
+  const appointments = await getAppointments();
   const filtered = appointments.filter((a) => a.id !== id);
   if (filtered.length === appointments.length) return false;
 
@@ -104,8 +321,27 @@ export function deleteAppointment(id: string): boolean {
   return true;
 }
 
-export function getBookedSlotsForDate(dateStr: string): string[] {
-  const appointments = getAppointments();
+export async function getBookedSlotsForDate(dateStr: string): Promise<string[]> {
+  if (isDatabaseConfigured && db) {
+    try {
+      const rows = await db
+        .select({ timeSlot: appointmentsTable.timeSlot })
+        .from(appointmentsTable)
+        .where(
+          and(
+            eq(appointmentsTable.date, dateStr),
+            ne(appointmentsTable.bookingStatus, "cancelled")
+          )
+        );
+
+      return rows.map((r) => r.timeSlot);
+    } catch (err) {
+      console.warn("Neon DB getBookedSlotsForDate failed, falling back to local storage:", err);
+    }
+  }
+
+  // Fallback to local JSON
+  const appointments = await getAppointments();
   return appointments
     .filter(
       (a) =>

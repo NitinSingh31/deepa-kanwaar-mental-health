@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     const targetDate = new Date(date + "T00:00:00");
     const dayOfWeek = targetDate.getDay();
 
-    const settings = getSettings();
+    const settings = await getSettings();
 
     // Check if the doctor works on this day
     if (!settings.workingDays.includes(dayOfWeek)) {
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const bookedSlots = getBookedSlotsForDate(date);
+    const bookedSlots = await getBookedSlotsForDate(date);
     const slots = settings.availableSlots.map((slot) => ({
       slot,
       isAvailable: !bookedSlots.includes(slot),

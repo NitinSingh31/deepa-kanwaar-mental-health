@@ -4,7 +4,7 @@ import { Appointment } from "@/lib/types";
 
 export async function GET() {
   try {
-    const appointments = getAppointments();
+    const appointments = await getAppointments();
     return NextResponse.json({ appointments });
   } catch (error) {
     console.error("Error fetching appointments:", error);
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Check conflict
-    const bookedSlots = getBookedSlotsForDate(date);
+    const bookedSlots = await getBookedSlotsForDate(date);
     if (bookedSlots.includes(timeSlot)) {
       return NextResponse.json(
         { error: "The selected time slot was just booked by someone else. Please choose another slot." },
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const settings = getSettings();
+    const settings = await getSettings();
     const id = `DKM-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
     const isFree = Boolean(
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    saveAppointment(newAppointment);
+    await saveAppointment(newAppointment);
 
     return NextResponse.json({
       success: true,

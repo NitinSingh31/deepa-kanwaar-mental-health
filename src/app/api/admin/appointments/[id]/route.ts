@@ -8,7 +8,7 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await request.json();
-    const updated = updateAppointment(id, body);
+    const updated = await updateAppointment(id, body);
 
     if (!updated) {
       return NextResponse.json({ error: "Appointment not found" }, { status: 404 });
@@ -27,7 +27,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    const success = deleteAppointment(id);
+    const success = await deleteAppointment(id);
 
     if (!success) {
       return NextResponse.json({ error: "Appointment not found" }, { status: 404 });
