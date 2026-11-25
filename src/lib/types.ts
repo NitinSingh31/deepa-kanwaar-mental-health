@@ -9,7 +9,7 @@ export type BookingStatus = "confirmed" | "pending" | "completed" | "cancelled";
 export interface Appointment {
   id: string;
   clientName: string;
-  clientEmail: string;
+  clientEmail?: string;
   clientPhone: string;
   sessionType: string;
   format: SessionFormat;

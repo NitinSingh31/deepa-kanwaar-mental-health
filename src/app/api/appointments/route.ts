@@ -29,8 +29,8 @@ export async function POST(request: NextRequest) {
     } = body;
 
     // Validation
-    if (!clientName || !clientEmail || !clientPhone || !date || !timeSlot) {
-      return NextResponse.json({ error: "Missing required booking details" }, { status: 400 });
+    if (!clientName || !clientPhone || !date || !timeSlot) {
+      return NextResponse.json({ error: "Missing required booking details (Name, Phone, Date, or Time)" }, { status: 400 });
     }
 
     // Check conflict
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     const newAppointment: Appointment = {
       id,
       clientName: clientName.trim(),
-      clientEmail: clientEmail.trim().toLowerCase(),
+      clientEmail: clientEmail?.trim() ? clientEmail.trim().toLowerCase() : "",
       clientPhone: clientPhone.trim(),
       sessionType: sessionType || (isFree ? "Free Consultation (15 Mins)" : "Individual Psychotherapy"),
       format: format === "in_person" ? "in_person" : "online",

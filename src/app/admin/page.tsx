@@ -93,7 +93,7 @@ export default function AdminPage() {
       result = result.filter(
         (a) =>
           a.clientName.toLowerCase().includes(query) ||
-          a.clientEmail.toLowerCase().includes(query) ||
+          (a.clientEmail ? a.clientEmail.toLowerCase().includes(query) : false) ||
           a.id.toLowerCase().includes(query) ||
           a.clientPhone.includes(query)
       );
@@ -431,10 +431,12 @@ export default function AdminPage() {
                         <div className="font-bold text-sage-900 text-sm">
                           {appt.clientName}
                         </div>
-                        <div className="text-[11px] text-sage-500 flex items-center gap-1 mt-0.5">
-                          <Mail className="w-3 h-3 text-sage-400" />
-                          <span>{appt.clientEmail}</span>
-                        </div>
+                        {appt.clientEmail && (
+                          <div className="text-[11px] text-sage-500 flex items-center gap-1 mt-0.5">
+                            <Mail className="w-3 h-3 text-sage-400" />
+                            <span>{appt.clientEmail}</span>
+                          </div>
+                        )}
                         <div className="text-[11px] text-sage-500 flex items-center gap-1">
                           <Phone className="w-3 h-3 text-sage-400" />
                           <span>{appt.clientPhone}</span>

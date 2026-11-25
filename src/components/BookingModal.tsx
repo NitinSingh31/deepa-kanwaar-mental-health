@@ -148,8 +148,8 @@ export default function BookingModal({
 
   const handleNextToPayment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!clientName.trim() || !clientEmail.trim() || !clientPhone.trim()) {
-      setErrorMsg("Please fill in your name, email, and phone number.");
+    if (!clientName.trim() || !clientPhone.trim()) {
+      setErrorMsg("Please fill in your name and phone / WhatsApp number.");
       return;
     }
     setErrorMsg("");
@@ -470,12 +470,11 @@ export default function BookingModal({
 
               <div>
                 <label className="block text-xs font-bold text-sage-700 mb-1">
-                  Email Address *
+                  Email Address (Optional)
                 </label>
                 <input
                   type="email"
-                  required
-                  placeholder="name@example.com"
+                  placeholder="name@example.com (optional)"
                   value={clientEmail}
                   onChange={(e) => setClientEmail(e.target.value)}
                   className="w-full px-3.5 py-2.5 rounded-xl border border-sage-200 text-sm text-sage-900 bg-white focus:ring-2 focus:ring-terracotta-500/30 focus:outline-hidden"
