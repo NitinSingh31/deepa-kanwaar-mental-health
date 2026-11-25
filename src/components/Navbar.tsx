@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X, Phone, Calendar, ShieldCheck, Lock } from "lucide-react";
+import { Menu, X, Phone, Calendar, ShieldCheck } from "lucide-react";
 
 interface NavbarProps {
   onBookClick: () => void;
@@ -39,14 +39,6 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
             >
               WhatsApp: +91 98774 08869
             </a>
-            <span className="hidden sm:inline">|</span>
-            <Link
-              href="/admin"
-              className="text-ochre-300 hover:text-white flex items-center gap-1 transition"
-            >
-              <Lock className="w-3 h-3" />
-              Doctor Portal
-            </Link>
           </div>
         </div>
       </div>
@@ -180,13 +172,6 @@ export default function Navbar({ onBookClick, onFreeConsultClick }: NavbarProps)
             >
               FAQs
             </a>
-            <Link
-              href="/admin"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block py-2 text-sm font-medium text-ochre-700 flex items-center gap-1"
-            >
-              <Lock className="w-4 h-4" /> Doctor Admin Portal
-            </Link>
             <div className="pt-2 space-y-2">
               <button
                 onClick={() => {

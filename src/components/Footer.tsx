@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Phone, Heart, ShieldCheck, Lock, Globe } from "lucide-react";
+import { Mail, Phone, Heart, ShieldCheck, Globe } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -72,12 +72,6 @@ export default function Footer() {
                 <a href="#faqs" className="hover:text-ochre-300 transition">
                   Frequently Asked Questions
                 </a>
-              </li>
-              <li>
-                <Link href="/admin" className="text-ochre-300 hover:text-white flex items-center gap-1 transition">
-                  <Lock className="w-3.5 h-3.5" />
-                  Doctor Admin Portal
-                </Link>
               </li>
             </ul>
           </div>
