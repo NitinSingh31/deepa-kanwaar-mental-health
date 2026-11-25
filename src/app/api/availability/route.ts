@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
       date,
       slots,
       fee: settings.sessionFee,
+      upiId: settings.upiId,
     });
   } catch (error: any) {
     if (error?.digest?.startsWith("NEXT_")) {

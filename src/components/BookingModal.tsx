@@ -48,6 +48,8 @@ export default function BookingModal({
   // Available slots fetched from API
   const [slots, setSlots] = useState<{ slot: string; isAvailable: boolean }[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
+  const [currentFee, setCurrentFee] = useState<number>(2100);
+  const [currentUpiId, setCurrentUpiId] = useState<string>("deepakanwaar.therapy@oksbi");
 
   // Intake State
   const [clientName, setClientName] = useState("");
@@ -106,6 +108,8 @@ export default function BookingModal({
         const data = await res.json();
         if (data.slots) {
           setSlots(data.slots);
+          if (data.fee !== undefined) setCurrentFee(data.fee);
+          if (data.upiId) setCurrentUpiId(data.upiId);
           // Auto select first available slot
           const firstAvailable = data.slots.find((s: { isAvailable: boolean }) => s.isAvailable);
           if (firstAvailable) {
@@ -286,7 +290,7 @@ export default function BookingModal({
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-xs font-bold text-sage-900">Full Therapy Session</span>
                     <span className="text-[10px] bg-sage-200 text-sage-800 font-bold px-2 py-0.5 rounded-full">
-                      ₹2,100
+                      ₹{currentFee.toLocaleString("en-IN")}
                     </span>
                   </div>
                   <div className="text-[11px] text-sage-600">
@@ -401,7 +405,7 @@ export default function BookingModal({
               <div className="text-xs text-sage-600">
                 Session Fee:{" "}
                 <strong className="text-sm text-sage-900">
-                  {isFreeConsult ? "₹0 (Complimentary)" : "₹2,100"}
+                  {isFreeConsult ? "₹0 (Complimentary)" : `₹${currentFee.toLocaleString("en-IN")}`}
                 </strong>
                 {isFreeConsult ? (
                   <span className="ml-1.5 text-[11px] text-terracotta-600 font-bold">
@@ -548,7 +552,7 @@ export default function BookingModal({
               <p className="text-xs sm:text-sm text-sage-600 mt-1">
                 {isFreeConsult
                   ? "Complimentary 15-Minute introductory discovery consultation with Deepa Kanwaar."
-                  : "Total consultation fee: ₹2,100 for a dedicated 60-minute session."}
+                  : `Total consultation fee: ₹${currentFee.toLocaleString("en-IN")} for a dedicated 60-minute session.`}
               </p>
             </div>
 
@@ -597,7 +601,7 @@ export default function BookingModal({
                       />
                       <div>
                         <div className="text-sm font-bold text-sage-900 flex items-center gap-2">
-                          <span>Option 1: Pay Online Now (₹2,100)</span>
+                          <span>Option 1: Pay Online Now (₹{currentFee.toLocaleString("en-IN")})</span>
                           <span className="text-[10px] bg-sage-200 text-sage-800 px-2 py-0.5 rounded-full font-bold">
                             Instant Confirm
                           </span>
@@ -693,8 +697,8 @@ export default function BookingModal({
                         <strong>How it works:</strong> Your slot will be reserved. Deepa&apos;s clinic will verify payment confirmation via WhatsApp before sending the final calendar invite.
                       </p>
                       <div className="p-2.5 bg-white rounded-xl border border-sage-200 flex items-center justify-between">
-                        <span>UPI ID: <strong className="text-sage-900">deepakanwaar.therapy@oksbi</strong></span>
-                        <span className="text-[11px] text-terracotta-600 font-semibold">₹2,100</span>
+                        <span>UPI ID: <strong className="text-sage-900">{currentUpiId}</strong></span>
+                        <span className="text-[11px] text-terracotta-600 font-semibold">₹{currentFee.toLocaleString("en-IN")}</span>
                       </div>
                     </div>
                   )}
@@ -732,7 +736,7 @@ export default function BookingModal({
                   </>
                 ) : paymentMethod === "online" ? (
                   <>
-                    <span>Pay ₹2,100 &amp; Confirm</span>
+                    <span>Pay ₹{currentFee.toLocaleString("en-IN")} &amp; Confirm</span>
                     <ArrowRight className="w-4 h-4" />
                   </>
                 ) : (
@@ -827,7 +831,7 @@ export default function BookingModal({
                     <QrCode className="w-4 h-4 text-ochre-600" />
                     <span>Pay via UPI before session:</span>
                   </div>
-                  <div>UPI ID: <strong className="text-sage-900">deepakanwaar.therapy@oksbi</strong></div>
+                  <div>UPI ID: <strong className="text-sage-900">{currentUpiId}</strong></div>
                   <div className="text-[11px] text-sage-600">
                     Send screenshot with reference <strong>{confirmedBooking.id}</strong> on WhatsApp.
                   </div>
