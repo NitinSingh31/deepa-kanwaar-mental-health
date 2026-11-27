@@ -25,7 +25,7 @@ export const clinicSettings = pgTable("clinic_settings", {
   doctorName: text("doctor_name").notNull().default("Deepa Kanwaar"),
   title: text("title").notNull().default("Counselling Psychologist & Allied Health Provider"),
   sessionFee: integer("session_fee").notNull().default(2100),
-  upiId: text("upi_id").notNull().default("deepakanwaar.therapy@oksbi"),
+  upiId: text("upi_id").notNull().default("827deepa@okaxis"),
   whatsappNumber: varchar("whatsapp_number", { length: 32 }).notNull().default("+919877408869"),
   clinicAddress: text("clinic_address").notNull().default("Purely Online Consultations (Google Meet Worldwide)"),
   workingDays: json("working_days").$type<number[]>().notNull().default([1, 2, 3, 4, 5, 6]),

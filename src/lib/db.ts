@@ -13,7 +13,7 @@ export const DEFAULT_SETTINGS: DoctorSettings = {
   doctorName: "Deepa Kanwaar",
   title: "Counselling Psychologist & Allied Health Provider",
   sessionFee: 2100,
-  upiId: "deepakanwaar.therapy@oksbi",
+  upiId: "827deepa@okaxis",
   whatsappNumber: "+919877408869",
   clinicAddress: "Purely Online Consultations (Google Meet Worldwide)",
   workingDays: [1, 2, 3, 4, 5, 6], // Mon - Sat

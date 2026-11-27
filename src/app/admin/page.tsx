@@ -58,7 +58,7 @@ export default function AdminPage() {
   // Clinic settings states
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [settingsFee, setSettingsFee] = useState<number>(2100);
-  const [settingsUpiId, setSettingsUpiId] = useState<string>("deepakanwaar.therapy@oksbi");
+  const [settingsUpiId, setSettingsUpiId] = useState<string>("827deepa@okaxis");
   const [settingsWhatsapp, setSettingsWhatsapp] = useState<string>("+919877408869");
   const [savingSettings, setSavingSettings] = useState(false);
   const [settingsError, setSettingsError] = useState("");

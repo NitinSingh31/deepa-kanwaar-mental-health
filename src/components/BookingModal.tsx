@@ -49,7 +49,7 @@ export default function BookingModal({
   const [slots, setSlots] = useState<{ slot: string; isAvailable: boolean }[]>([]);
   const [loadingSlots, setLoadingSlots] = useState(false);
   const [currentFee, setCurrentFee] = useState<number>(2100);
-  const [currentUpiId, setCurrentUpiId] = useState<string>("deepakanwaar.therapy@oksbi");
+  const [currentUpiId, setCurrentUpiId] = useState<string>("827deepa@okaxis");
 
   // Intake State
   const [clientName, setClientName] = useState("");
